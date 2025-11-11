@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
+      html, body { overflow-x: hidden; }
+
       .topnav {
         position: fixed;
         top: 0; left: 0; right: 0;
@@ -26,52 +28,148 @@
         padding: 0 18px;
       }
 
-      /* Brand (logo + name) */
+      /* Brand (logo + name in nav) */
       .brand { display: flex; align-items: center; gap: 10px; }
       .brand img { height: 40px; width: auto; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
       .brand a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 800;
-        font-size: 1.5em;
-        letter-spacing: 0.5px;
-        color: #ffffff;
-        text-decoration: none;
-        outline: none;                 /* remove default browser outline */
-        border: none;                  /* no border */
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.5em; letter-spacing: 0.5px;
+        color: #ffffff; text-decoration: none; outline: none; border: none;
       }
-      
-      /* ✅ Prevent hover or focus color and outline */
       .topnav .brand a:hover,
       .topnav .brand a:focus,
-      .topnav .brand a:active {
-        color: #ffffff !important;     /* stay white */
-        border: none !important;       /* no underline */
-        outline: none !important;      /* no focus dotted line */
-        box-shadow: none !important;   /* no shadow effect */
-      }
+      .topnav .brand a:active { color: #ffffff !important; border: none !important; outline: none !important; box-shadow: none !important; }
 
-      /* Menu links */
-      .topnav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
+      /* Desktop/Tablet menu links */
+      .topnav ul {
+        list-style: none; margin: 0; padding: 0; display: flex; gap: 20px;
+      }
       .topnav ul a {
         display: block; padding: 6px 2px; text-decoration: none;
         color: #ffffff; border-bottom: 2px solid transparent;
         font-weight: normal; transition: color .3s ease, border-color .3s ease;
       }
-      .topnav ul a:hover {
-        color: #FFD700 !important;     /* gold hover */
-        border-color: #FFD700;         /* gold underline */
-      }
+      .topnav ul a:hover { color: #FFD700 !important; border-color: #FFD700; }
 
+      /* Keep content below fixed nav */
       body { padding-top: 64px; }
 
-      #header h1, #header p { color: #fff; }
+      /* Header & Footer aligned with nav container */
+      #header, #footer {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 18px;
+        text-align: left;
+        position: relative;
+      }
+
+      /* Header logo (desktop: large and on right) */
+      #header .header-logo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 220px;        /* desktop size */
+        width: auto;
+        opacity: 0.9;
+        filter: drop-shadow(0 0 8px rgba(0,0,0,0.4));
+      }
+
+      #header h1, #header p { color: #fff; position: relative; z-index: 2; }
       #header p { margin: 0.35em 0; line-height: 1.4; }
 
+      /* Footer */
       #footer .icons a { transition: color .3s ease; color: #fff; }
       #footer .icons a:hover { color: #FFD700; }
       #footer .copyright { color: #aaa; }
+
+      /* =========================
+         RESPONSIVE / MOBILE
+         ========================= */
+
+      /* Tablet tweaks */
+      @media (max-width: 992px) {
+        .topnav .inner { gap: 12px; }
+        .brand a { font-size: 1.3em; }
+        .topnav ul { gap: 14px; }
+        #header .header-logo { height: 180px; }
+      }
+
+      /* Phone: sideways swipe nav + header logo becomes centered/smaller */
+      @media (max-width: 768px) {
+        .topnav .inner {
+          height: auto;
+          gap: 10px;
+          padding-top: 8px;
+          padding-bottom: 8px;
+          /* stack brand + scroller visually */
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        /* Horizontal scroller for menu */
+        .topnav ul {
+          display: block;            /* block container for scroller strip */
+          white-space: nowrap;       /* keep items on one line */
+          overflow-x: auto;          /* enable sideways swipe */
+          overflow-y: hidden;
+          -webkit-overflow-scrolling: touch;  /* iOS momentum */
+          scrollbar-width: none;     /* Firefox hide scrollbar */
+          padding-bottom: 6px;       /* room for hidden scrollbar */
+          scroll-snap-type: x proximity;
+        }
+        .topnav ul::-webkit-scrollbar { display: none; } /* Chrome/Safari hide scrollbar */
+
+        .topnav ul li {
+          display: inline-block;     /* make items inline in the strip */
+          margin-right: 16px;
+          scroll-snap-align: start;
+        }
+        .topnav ul li:last-child { margin-right: 0; }
+
+        .topnav ul a { padding: 8px 2px; font-size: 0.98em; }
+
+        /* Optional: subtle gradient edges to hint scrollability */
+        .topnav { position: relative; }
+        .topnav::after, .topnav::before {
+          content: "";
+          position: absolute;
+          top: 60px;                 /* below brand row */
+          height: 28px;
+          width: 24px;
+          pointer-events: none;
+        }
+        .topnav::before {
+          left: 0;
+          background: linear-gradient(to right, rgba(0,0,0,0.25), rgba(0,0,0,0));
+        }
+        .topnav::after {
+          right: 0;
+          background: linear-gradient(to left, rgba(0,0,0,0.25), rgba(0,0,0,0));
+        }
+
+        body { padding-top: 96px; } /* extra room since nav is taller now */
+
+        /* Header content: center and make logo inline (not absolute) */
+        #header { text-align: center; }
+        #header .header-logo {
+          position: static;
+          display: block;
+          margin: 0 auto 14px auto;
+          height: 120px;             /* phone size */
+          max-width: 80vw;
+          width: auto;
+        }
+        #header h1, #header p { position: static; }
+      }
+
+      /* Very small phones */
+      @media (max-width: 420px) {
+        .brand img { height: 32px; }
+        .brand a { font-size: 1.15em; letter-spacing: 0.3px; }
+        .topnav ul li { margin-right: 12px; }
+        .topnav ul a { font-size: 0.92em; }
+        #header .header-logo { height: 100px; max-width: 85vw; }
+      }
     </style>
   </head>
   <body class="is-preload">
@@ -85,6 +183,7 @@
           </a>
         </div>
 
+        <!-- On mobile, this becomes a sideways swipe strip -->
         <ul>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="publications.html">Publications</a></li>
@@ -96,6 +195,9 @@
     </nav>
 
     <header id="header">
+      <!-- Desktop: big logo to the right; Phone: centered, smaller -->
+      <img src="images/logo.png" alt="Barbosa Lab Logo" class="header-logo" />
+
       <h1>Barbosa Lab 🌾🤖🛰️</h1>
       <p>A Research & Extension team innovating</p>
       <p>data-driven farming for a sustainable future</p>
