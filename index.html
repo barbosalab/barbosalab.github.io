@@ -15,7 +15,7 @@
       /* Top navigation */
       .topnav {
         position: fixed; inset: 0 0 auto 0;
-        z-index: 10000;
+        z-index: 10003;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
         backdrop-filter: saturate(120%) blur(6px);
@@ -51,6 +51,8 @@
         font-size: 1.6rem; cursor: pointer;
         width: 44px; height: 44px;
         display: flex; align-items: center; justify-content: center;
+        position: relative;
+        z-index: 10004;
       }
 
       /* Right-side column for mobile */
@@ -59,14 +61,15 @@
 
         .menu {
           position: fixed;
-          top: 0; right: 0; bottom: 0;
+          top: 60px !important; /* below navbar */
+          right: 0; bottom: 0;
           width: 78%; max-width: 360px;
           display: flex; flex-direction: column; gap: 16px;
           background: transparent;
-          padding: 84px 24px 24px;
+          padding: 40px 24px 24px;
           transform: translateX(100%);
           transition: transform 0.3s ease;
-          z-index: 10002;
+          z-index: 10002 !important;
         }
         .topnav.open .menu { transform: translateX(0); }
 
@@ -76,27 +79,14 @@
           text-decoration: none;
         }
 
-        /* Dark background goes UNDER the menu now */
+        /* Dark background overlay (under the list) */
         .nav-backdrop {
-          position: fixed;
-          inset: 0;
+          position: fixed; inset: 0;
           background: rgba(0, 0, 0, 0.75);
-          opacity: 0;
-          pointer-events: none;
+          opacity: 0; pointer-events: none;
           transition: opacity 0.3s ease;
-          z-index: 9999; /* lower than menu */
+          z-index: 9999 !important;
         }
-        
-        /* When menu is open */
-        .topnav.open + .nav-backdrop {
-          opacity: 1;
-          pointer-events: auto;
-        }
-        
-        /* Keep stacking order consistent */
-        .menu { z-index: 10002 !important; }  /* menu above backdrop */
-        .topnav { z-index: 10001 !important; } /* nav bar above backdrop */
-
         .topnav.open + .nav-backdrop {
           opacity: 1; pointer-events: auto;
         }
@@ -199,12 +189,9 @@
         });
 
         backdrop && backdrop.addEventListener('click', closeMenu);
-
         window.addEventListener('keydown', (e) => {
           if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
         });
-
-        // Close after clicking a link
         menu.addEventListener('click', (e) => {
           if (e.target.closest('a') && window.matchMedia('(max-width: 768px)').matches) closeMenu();
         });
@@ -214,4 +201,3 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
-
