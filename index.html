@@ -30,15 +30,26 @@
       .brand { display: flex; align-items: center; gap: 10px; }
       .brand img { height: 40px; width: auto; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
       .brand a {
-        display: flex; align-items: center; gap: 10px;
-        font-weight: 800; font-size: 1.5em; letter-spacing: .5px;
-        color: #fff; text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 1.5em;
+        letter-spacing: 0.5px;
+        color: #ffffff;
+        text-decoration: none;
+        outline: none;                 /* remove default browser outline */
+        border: none;                  /* no border */
       }
-      /* ✅ Keep brand color fixed (no hover color change) */
+      
+      /* ✅ Prevent hover or focus color and outline */
       .topnav .brand a:hover,
-      .topnav .brand a:focus {
-        color: #ffffff !important;
-        border-color: transparent !important;
+      .topnav .brand a:focus,
+      .topnav .brand a:active {
+        color: #ffffff !important;     /* stay white */
+        border: none !important;       /* no underline */
+        outline: none !important;      /* no focus dotted line */
+        box-shadow: none !important;   /* no shadow effect */
       }
 
       /* Menu links */
@@ -106,6 +117,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
