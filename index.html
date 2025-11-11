@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-  <style>
+
+    
+<style>
   /* ------- Base ------- */
   html, body { overflow-x: hidden; }
   body { padding-top: 64px; }
@@ -66,27 +68,35 @@
     border-color: #FFD700 !important;
   }
 
-  /* Hamburger toggle */
+  /* Hamburger toggle (neutralize theme's button styles) */
   .menu-toggle {
     display: none; /* hidden on desktop */
-    border: none; background: none;
+    border: none !important;
+    background: transparent !important;
     color: #fff !important;
     font-size: 1.6rem; cursor: pointer;
     width: 44px; height: 44px;
     align-items: center; justify-content: center;
     position: relative;
     z-index: 10004;
-    transition: color 0.3s ease, background 0.3s ease;
+    transition: color 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent; /* remove tap highlight */
   }
-  .menu-toggle:hover {
-    color: #FFD700 !important;
-  }
-  /* Remove default green highlight on click/focus */
+  .menu-toggle:hover { color: #FFD700 !important; }
   .menu-toggle:focus,
-  .menu-toggle:active {
+  .menu-toggle:active,
+  .menu-toggle:focus-visible {
     outline: none !important;
-    background: none !important;
+    background: transparent !important;   /* kill green/teal active bg */
     box-shadow: none !important;
+  }
+  /* Make sure the icon itself never gets a bg */
+  .menu-toggle i {
+    background: transparent !important;
+    box-shadow: none !important;
+    pointer-events: none; /* clicks go to the button */
   }
 
   /* Right-side column for mobile */
@@ -116,9 +126,7 @@
       border: none;
       transition: color 0.3s ease;
     }
-    .menu a:hover {
-      color: #FFD700 !important;
-    }
+    .menu a:hover { color: #FFD700 !important; }
 
     /* Dark background overlay (under the list) */
     .nav-backdrop {
@@ -128,9 +136,7 @@
       transition: opacity 0.3s ease;
       z-index: 9999 !important;
     }
-    .topnav.open + .nav-backdrop {
-      opacity: 1; pointer-events: auto;
-    }
+    .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
 
     /* Adjust logo */
     .brand img { height: 36px; }
@@ -151,6 +157,9 @@
 </style>
 
 
+
+
+    
   </head>
   <body class="is-preload">
 
@@ -251,5 +260,6 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
