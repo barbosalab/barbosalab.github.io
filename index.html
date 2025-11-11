@@ -149,40 +149,45 @@
     .menu a { font-size: 1.07em; }
   }
 
-/* === FOOTER === */
+/* === FIXED CENTERED FOOTER AT BOTTOM === */
 #footer {
-  width: 100%;
-  text-align: center;            /* center all inner content */
-  padding: 40px 0;
-  position: relative;
+  position: fixed;              /* stays at bottom even if page scrolls */
+  bottom: 0;                    /* attach to bottom edge */
+  left: 0;
+  width: 100%;                  /* full width */
+  text-align: center;
+  padding: 25px 0;
+  background: rgba(0,0,0,0.25); /* subtle transparent background */
+  backdrop-filter: blur(6px);   /* nice glass effect */
+  border-top: 1px solid rgba(255,255,255,0.3);
   display: flex;
   flex-direction: column;
-  align-items: center;           /* horizontally center */
-  justify-content: center;       /* vertically center content if needed */
+  align-items: center;
+  justify-content: center;
+  z-index: 999;                 /* stays above content */
 }
 
-/* Social icons centered in one row */
+/* Social icons centered */
 #footer .icons {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 25px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   list-style: none;
   padding: 0;
 }
 
-/* Social icons style */
 #footer .icons a {
   color: #fff;
-  transition: color 0.3s ease;
   font-size: 1.3em;
+  transition: color 0.3s ease;
 }
 #footer .icons a:hover {
   color: #FFD700;
 }
 
-/* Copyright lines centered */
+/* Copyright text centered */
 #footer .copyright {
   color: #aaa;
   list-style: none;
@@ -191,10 +196,11 @@
   text-align: center;
 }
 #footer .copyright li {
-  display: block;               /* stacked vertically */
+  display: block;
   font-size: 0.95em;
   margin: 3px 0;
 }
+
 
 </style>
 
@@ -302,6 +308,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
