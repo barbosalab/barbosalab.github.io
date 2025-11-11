@@ -66,6 +66,16 @@
 
       body { padding-top: 64px; }
 
+      /* ✅ Adds equal side padding for header & footer content */
+      #header, #footer {
+        padding: 0 18px;
+      }
+      /* Limit maximum width and center align content like navbar */
+      #header, #footer {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      
       #header h1, #header p { color: #fff; }
       #header p { margin: 0.35em 0; line-height: 1.4; }
 
@@ -117,6 +127,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
