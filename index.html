@@ -19,15 +19,25 @@
         border-bottom: 1px solid rgba(255,255,255,0.5); /* thin white line */
       }
 
-      .topnav .inner {
-        max-width: 960px;
-        margin: 0 auto;
-        height: 60px;
+      /* ===== Brand (Logo + Lab name) ===== */
+      .brand {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-        padding: 0 18px;
+        gap: 10px;
+      }
+
+      .brand img {
+        height: 38px;                    /* ✅ adjust logo size here */
+        width: auto;
+        vertical-align: middle;
+      }
+
+      .brand a {
+        font-weight: 800;
+        font-size: 1.5em;
+        letter-spacing: 0.5px;
+        color: #ffffff;
+        text-decoration: none;
       }
 
       .topnav .brand a {
@@ -122,5 +132,6 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
