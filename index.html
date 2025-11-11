@@ -200,7 +200,10 @@
   font-size: 0.95em;
   margin: 3px 0;
 }
-
+/* Remove the "|" separator before footer list items */
+#footer .copyright li::before {
+  content: none !important;
+}
 
 </style>
 
@@ -252,7 +255,7 @@
       </ul>
       <ul class="copyright">
         <li>&copy; 2025 Barbosa Lab, University of Missouri. All rights reserved.</li>
-        <li>Website Developed by Marcelo Barbosa</li>
+        <li>Website Developed by Marcelo Barbosa.</li>
       </ul>
     </footer>
 
@@ -308,6 +311,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
