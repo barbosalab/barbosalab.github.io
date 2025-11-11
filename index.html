@@ -76,14 +76,27 @@
           text-decoration: none;
         }
 
-        /* Dark background overlay */
+        /* Dark background goes UNDER the menu now */
         .nav-backdrop {
-          position: fixed; inset: 0;
+          position: fixed;
+          inset: 0;
           background: rgba(0, 0, 0, 0.75);
-          opacity: 0; pointer-events: none;
+          opacity: 0;
+          pointer-events: none;
           transition: opacity 0.3s ease;
-          z-index: 10000;
+          z-index: 9999; /* lower than menu */
         }
+        
+        /* When menu is open */
+        .topnav.open + .nav-backdrop {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        
+        /* Keep stacking order consistent */
+        .menu { z-index: 10002 !important; }  /* menu above backdrop */
+        .topnav { z-index: 10001 !important; } /* nav bar above backdrop */
+
         .topnav.open + .nav-backdrop {
           opacity: 1; pointer-events: auto;
         }
@@ -201,3 +214,4 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
