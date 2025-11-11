@@ -4,21 +4,17 @@
     <meta charset="utf-8" />
     <title>Barbosa Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Theme stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" />
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
-      /* ===== Transparent top bar ===== */
       .topnav {
         position: fixed;
         top: 0; left: 0; right: 0;
         z-index: 10000;
-        background: rgba(0,0,0,0.15); /* fully transparent */
+        background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
       }
-
       .topnav .inner {
         max-width: 960px;
         margin: 0 auto;
@@ -30,88 +26,49 @@
         padding: 0 18px;
       }
 
-      /* ===== Brand (Logo + Lab name) ===== */
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .brand img {
-        height: 60px;                    /* ✅ adjust logo size here */
-        width: auto;
-        vertical-align: middle;
-        filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); /* adds soft shadow */
-      }
-
+      /* Brand (logo + name) */
+      .brand { display: flex; align-items: center; gap: 10px; }
+      .brand img { height: 60px; width: auto; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
       .brand a {
-        font-weight: 800;
-        font-size: 1.5em;
-        letter-spacing: 0.5px;
-        color: #ffffff;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.5em; letter-spacing: .5px;
+        color: #fff; text-decoration: none;
+      }
+      /* ✅ Keep brand color fixed (no hover color change) */
+      .topnav .brand a:hover,
+      .topnav .brand a:focus {
+        color: #ffffff !important;
+        border-color: transparent !important;
       }
 
-      /* ✅ Prevent hover underline or color change on the brand name */
-      .brand a:hover {
-        color: #ffffff;
-        border: none;
-      }
-
-      /* ===== Nav Links ===== */
-      .topnav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        gap: 20px;
-      }
-
+      /* Menu links */
+      .topnav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
       .topnav ul a {
-        display: block;
-        padding: 6px 2px;
-        text-decoration: none;
-        color: #ffffff;
-        border-bottom: 2px solid transparent;
-        font-weight: normal;
-        transition: color .3s ease, border-color .3s ease;
+        display: block; padding: 6px 2px; text-decoration: none;
+        color: #ffffff; border-bottom: 2px solid transparent;
+        font-weight: normal; transition: color .3s ease, border-color .3s ease;
       }
-
       .topnav ul a:hover {
-        color: #FFD700 !important;   /* gold hover */
-        border-color: #FFD700;
+        color: #FFD700 !important;     /* gold hover */
+        border-color: #FFD700;         /* gold underline */
       }
 
-      /* Push content below fixed nav */
       body { padding-top: 64px; }
 
-      /* ===== Header text ===== */
       #header h1, #header p { color: #fff; }
-      #header p {
-        margin: 0.35em 0;
-        line-height: 1.4;
-      }
+      #header p { margin: 0.35em 0; line-height: 1.4; }
 
-      /* ===== Footer style ===== */
-      #footer .icons a {
-        transition: color .3s ease;
-        color: #fff;
-      }
+      #footer .icons a { transition: color .3s ease; color: #fff; }
       #footer .icons a:hover { color: #FFD700; }
       #footer .copyright { color: #aaa; }
     </style>
   </head>
   <body class="is-preload">
 
-    <!-- Transparent TOP NAV -->
     <nav class="topnav">
       <div class="inner">
-        <!-- ✅ Brand logo (PNG) + text, both clickable -->
         <div class="brand">
-          <a href="index.html" style="display:flex;align-items:center;gap:10px;">
+          <a href="index.html">
             <img src="images/logo.png" alt="Barbosa Lab Logo" />
             <span>Barbosa Lab</span>
           </a>
@@ -127,14 +84,12 @@
       </div>
     </nav>
 
-    <!-- HERO HEADER -->
     <header id="header">
       <h1>Barbosa Lab 🌾🤖🛰️</h1>
       <p>A Research & Extension team innovating</p>
       <p>data-driven farming for a sustainable future</p>
     </header>
 
-    <!-- Footer -->
     <footer id="footer">
       <ul class="icons">
         <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
@@ -148,16 +103,6 @@
       </ul>
     </footer>
 
-    <!-- Theme JS -->
     <script src="assets/js/main.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
