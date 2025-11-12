@@ -201,9 +201,11 @@
   margin: 3px 0;
 }
 
-/* Remove the "|" separator before footer list items */
-#footer .copyright li::before {
+/* Force remove any vertical bar separators */
+#footer .copyright li::before,
+#footer .copyright li::after {
   content: none !important;
+  display: none !important;
 }
 
 </style>
@@ -312,6 +314,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
