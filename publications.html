@@ -215,9 +215,29 @@
       .muted { color: #bfbfbf; }
 
 
-      .topnav .inner { height: 60px; }
-      body { padding-top: 72px; }   /* 60 nav + 12 gap */
+      /* --- Keep header just below the fixed topnav --- */
+      :root {
+        --nav-h: 60px;   /* must match .topnav .inner height */
+        --top-gap: 12px; /* tiny breathing room below the nav */
+      }
+      
+      /* Make sure the nav actually uses that height */
+      .topnav .inner { height: var(--nav-h); }
+      
+      /* Push the whole page down by nav height + small gap */
+      body { padding-top: calc(var(--nav-h) + var(--top-gap)); }
+      
+      /* Remove extra manual offset on the page header */
       #header { margin-top: 0; }
+      
+      /* Optional: if you jump to anchors near the top, keep them visible */
+      [id] { scroll-margin-top: calc(var(--nav-h) + var(--top-gap)); }
+      
+      /* Mobile can use the same values; tweak only if you want a bigger gap */
+      @media (max-width: 768px) {
+        :root { --top-gap: 10px; }
+      }
+
 
      
 
