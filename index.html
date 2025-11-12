@@ -231,14 +231,30 @@
   justify-content: center;
 }
 
-/* === Responsive logo sizing === */
+
+  
+/* === Force large logo on all devices === */
 #header .header-logo {
   width: auto;
-  height: clamp(100px, 50vw, 300px); /* scales with screen width */
-  margin-bottom: 10px;
+  height: 160px; /* big on desktop */
+  margin-bottom: 12px;
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
   transition: height 0.3s ease;
 }
+
+/* Keep it big on phones too */
+@media (max-width: 768px) {
+  #header .header-logo {
+    height: 140px !important; /* big on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  #header .header-logo {
+    height: 130px !important; /* still large on small phones */
+  }
+}
+
 
 
 #header h1 {
@@ -401,6 +417,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
