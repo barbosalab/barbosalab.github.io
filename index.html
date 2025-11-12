@@ -224,23 +224,52 @@
 /* === Header layout, spacing, and font styling === */
 #header {
   text-align: center;
-  margin-top: 100px; /* adjust vertical position under navbar */
+  margin-top: 100px;              /* space below navbar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#header .header-logo {
+  height: 90px;                   /* adjust logo size */
+  width: auto;
+  margin-bottom: 10px;            /* spacing between logo and title */
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
 }
 
 #header h1 {
   margin-bottom: 0.3em;
-  color: #ffffff;       /* main title white */
-  font-size: 2.5em;       /* adjust main title size as needed */
+  color: #ffffff;                 /* white title */
+  font-size: 2.5em;
   font-weight: 700;
 }
 
 #header p {
-  margin: 0.15em 0 !important;   /* closer lines */
-  line-height: 1.3 !important;   /* good readability */
-  color: #cccccc !important;     /* light grey subtitles */
+  margin: 0.15em 0 !important;    /* closer lines */
+  line-height: 1.3 !important;
+  color: #cccccc !important;      /* grey subtitles */
   font-weight: 400;
-  font-size: 0.95em;             /* smaller subtitle text */
+  font-size: 0.95em;
 }
+
+/* === Responsive tweaks === */
+@media (max-width: 768px) {
+  #header {
+    margin-top: 80px;
+  }
+  #header .header-logo {
+    height: 70px;
+    margin-bottom: 8px;
+  }
+  #header h1 {
+    font-size: 1.6em;
+  }
+  #header p {
+    font-size: 0.9em;
+  }
+}
+
 
 
 
@@ -280,6 +309,7 @@
     <div class="nav-backdrop" hidden></div>
 
     <header id="header">
+      <img src="images/logo.png" alt="Barbosa Lab Logo" class="header-logo" />
       <h1>Barbosa Lab 🌾🤖🛰️</h1>
       <p>A Research & Extension team innovating</p>
       <p>data-driven farming for a sustainable future</p>
@@ -350,6 +380,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
