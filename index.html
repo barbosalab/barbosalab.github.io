@@ -253,6 +253,15 @@
   font-size: 1.5em;
 }
 
+/* Smaller second subtitle line */
+#header .subtitle-small {
+  font-size: 0.8em;         /* smaller text */
+  color: #bfbfbf;           /* slightly lighter grey (optional) */
+  margin-top: 4px;          /* a little gap above it */
+  letter-spacing: 0.3px;    /* improves readability */
+}
+
+
 /* === Responsive tweaks === */
 @media (max-width: 768px) {
   #header {
@@ -310,8 +319,8 @@
 
     <header id="header">
       <img src="images/logofront.png" alt="Barbosa Lab Logo" class="header-logo" />
-      <p>A Research & Extension team innovating data-driven farming for a sustainable future</p>
-      <p>Remote Sensing | Artificial Intelligence | Agricultural Robotics | Drones | Ag Technologies</p>
+      <p>A Research & Extension team innovating data-driven farming for a sustainable future.</p>
+      <p class="subtitle-small">Remote Sensing | Artificial Intelligence | Agricultural Robotics | Drones | Ag Technologies</p>
 
     </header>
 
@@ -380,6 +389,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
