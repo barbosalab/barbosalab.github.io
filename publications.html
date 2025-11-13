@@ -147,10 +147,14 @@
         .menu a { font-size: 1.07em; }
       }
 
-      /* === Fixed centered footer at bottom === */
       #footer {
-        position: static; /* or just remove 'position' entirely */
-        width: 100%;
+        position: static; /* normal flow */
+        
+        /* full-width bar, same trick as .topnav */
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+      
         text-align: center;
         padding: 25px 0;
         background: rgba(0,0,0,0.25);
@@ -160,7 +164,9 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0; /* don’t let flexbox compress it */
       }
+
       
       #footer .icons {
         display: flex; justify-content: center; align-items: center;
