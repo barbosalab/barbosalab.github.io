@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Barbosa Lab — Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+      /* ------- Base layout ------- */
+      html, body {
+        scroll-behavior: auto !important;
+        overflow-anchor: none;
+      }
+      html, body { overflow-x: hidden; }
+
+      body {
+        margin: 0;
+        padding-top: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main.container {
+        flex: 1 0 auto;
+      }
+
+      /* Top navigation */
+      .topnav {
+        position: relative;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        z-index: 10003;
+        background: rgba(0,0,0,0.15);
+        border-bottom: 1px solid rgba(255,255,255,0.5);
+        backdrop-filter: saturate(120%) blur(6px);
+      }
+      .topnav .inner {
+        max-width: 960px; margin: 0 auto; height: 60px;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 18px; padding: 0 18px;
+      }
+
+      /* Branding */
+      .brand { display: flex; align-items: center; gap: 10px; }
+      .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
+
+      .brand a {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.5em;
+        color: #fff; text-decoration: none;
+      }
+
+      /* Menu links */
+      .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
+      .menu a {
+        color: #fff;
+        text-decoration: none;
+        padding: 6px 2px;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+        transition: color 0.3s ease, border-color 0.3s ease;
+      }
+      .menu a:hover { color: #FFD700 !important; border-color: #FFD700 !important; }
+
+      /* Hamburger icon */
+      .menu-toggle {
+        display: none;
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 1.6rem;
+        cursor: pointer;
+        width: 44px; height: 44px;
+        align-items: center; justify-content: center;
+        z-index: 10004;
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle { display: flex; }
+
+        .menu {
+          position: fixed;
+          top: 60px; right: 0; bottom: 0;
+          width: 78%; max-width: 360px;
+          flex-direction: column; gap: 16px;
+          background: transparent;
+          padding: 40px 24px;
+          transform: translateX(100%);
+          transition: transform 0.3s ease;
+          z-index: 10002;
+        }
+        .topnav.open .menu { transform: translateX(0); }
+
+        .nav-backdrop {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.75);
+          opacity: 0; pointer-events: none;
+          transition: opacity 0.3s ease;
+          z-index: 9999;
+        }
+        .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
+      }
+
+      /* Footer */
+      #footer {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        text-align: center;
+        padding: 25px 0;
+        background: rgba(0,0,0,0.25);
+        backdrop-filter: blur(6px);
+        border-top: 1px solid rgba(255,255,255,0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      #footer .icons {
+        display: flex; gap: 25px; list-style: none; padding: 0; margin-bottom: 8px;
+      }
+      #footer .icons a {
+        color: #fff; font-size: 1.3em; transition: color 0.3s ease;
+      }
+      #footer .icons a:hover { color: #FFD700; }
+
+      #footer .copyright {
+        list-style: none; padding: 0; margin: 0;
+        display: flex; flex-direction: column;
+      }
+      #footer .copyright li {
+        margin: 3px 0;
+      }
+    </style>
+  </head>
+
+  <body class="is-preload">
+    <!-- Navigation -->
+    <nav class="topnav" role="navigation">
+      <div class="inner">
+        <div class="brand">
+          <a href="index.html">
+            <img src="images/logo.png" alt="Barbosa Lab Logo" />
+            <span>Barbosa Lab</span>
+          </a>
+        </div>
+
+        <button class="menu-toggle" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="menu">
+          <li><a href="team.html">Team</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="equipment.html">Equipment</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="nav-backdrop" hidden></div>
+
+    <!-- EMPTY CONTENT AREA -->
+    <main class="container" id="content"></main>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <ul class="icons">
+        <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="fa-brands fa-x-twitter"></a></li>
+        <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="fa-brands fa-instagram"></a></li>
+        <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="fa-brands fa-linkedin"></a></li>
+        <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="fa-brands fa-facebook"></a></li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; 2025 Barbosa Lab, University of Missouri.</li>
+        <li>Website developed by Marcelo Barbosa.</li>
+      </ul>
+    </footer>
+
+    <!-- Mobile menu JS -->
+    <script>
+      (function () {
+        const nav = document.querySelector('.topnav');
+        const btn = document.querySelector('.menu-toggle');
+        const icon = btn.querySelector('i');
+        const backdrop = document.querySelector('.nav-backdrop');
+
+        function lockScroll(lock) {
+          document.documentElement.style.overflow = lock ? 'hidden' : '';
+          document.body.style.overflow = lock ? 'hidden' : '';
+        }
+
+        function openMenu() {
+          nav.classList.add('open');
+          icon.classList.replace('fa-bars', 'fa-xmark');
+          backdrop.removeAttribute('hidden');
+          lockScroll(true);
+        }
+
+        function closeMenu() {
+          nav.classList.remove('open');
+          icon.classList.replace('fa-xmark', 'fa-bars');
+          backdrop.setAttribute('hidden', '');
+          lockScroll(false);
+        }
+
+        btn.addEventListener('click', () => {
+          nav.classList.contains('open') ? closeMenu() : openMenu();
+        });
+
+        backdrop.addEventListener('click', closeMenu);
+      })();
+    </script>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
