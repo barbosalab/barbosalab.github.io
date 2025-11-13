@@ -11,14 +11,21 @@
       /* ------- Base (copied from home to keep layout identical) ------- */
       html, body { overflow-x: hidden; }
 
-      /* Nav is now part of normal flow, so no top padding */
-      body { padding-top: 0; padding-bottom: 160px; } /* bottom pad so fixed footer doesn't cover content */
+      /* Remove any default body margin so nav can touch viewport edges */
+      body {
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 160px; /* bottom pad so fixed footer doesn't cover content */
+      }
 
       /* Top navigation */
       .topnav {
-        /* was: position: fixed; inset: 0 0 auto 0; */
-        position: relative;          /* make nav part of the main screen */
-        width: 100%;
+        /* Make the bar span full viewport width, regardless of centered layout */
+        position: relative;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+
         z-index: 10003;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
@@ -334,7 +341,7 @@
 
           <li class="pub">
             <div class="title">Monitoring coffee fruit maturity using an enhanced convolutional neural network under different image acquisition settings</div>
-            <div class="meta">Kazama, E. H.; Tedesco, D.; Carreira, V. S.; Barbosa Júnior, M. R.; Oliveira, M. F.; Ferreira, F. M.; Junior, W. M.; Silva, R. P.</div>
+            <div class="meta">Kazama, E. H.; Tedesco, D; Carreira, V. S.; Barbosa Júnior, M. R.; Oliveira, M. F.; Ferreira, F. M.; Junior, W. M.; Silva, R. P.</div>
             <div class="venue">Scientia Horticulturae</div>
             <div class="doi">DOI: <a href="https://doi.org/10.1016/j.scienta.2024.112957" target="_blank" rel="noopener">10.1016/j.scienta.2024.112957</a></div>
           </li>
