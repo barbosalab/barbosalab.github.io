@@ -2,75 +2,114 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Barbosa Lab — Publications</title>
+    <title>Barbosa Lab — Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
-      /* ------- Base (copied from home to keep layout identical) ------- */
-      
+      /* ------- Base layout ------- */
       html, body {
         scroll-behavior: auto !important;
         overflow-anchor: none;
-      }
-      
-      html, body { overflow-x: hidden; }
-
-      /* Remove any default body margin so nav can touch viewport edges */
-      body {
+        overflow-x: hidden;
         margin: 0;
-        padding-top: 0;
-        /* no padding-bottom now */
+        height: 100%;
+      }
+
+      body {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        /* UPDATED: Removed padding-top and padding-bottom 
+           since the nav and footer are no longer fixed. */
+        /* padding-top: 60px; */ 
+        /* padding-bottom: 90px; */
+        padding-top: 0; 
+        padding-bottom: 0;
+        box-sizing: border-box;
       }
 
       main.container {
         flex: 1 0 auto;
+        max-width: 960px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 40px 18px;
+        box-sizing: border-box;
       }
 
-      /* Top navigation */
+      /* ------- Top navigation (Scrolling with content) ------- */
       .topnav {
-        /* Make the bar span full viewport width, regardless of centered layout */
-        position: relative;
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
+        /* CHANGED: Removed position: fixed, top, left, right. 
+           This makes the nav scroll normally with the content. */
+        /* position: fixed; */
+        /* top: 0; */
+        /* left: 0; */
+        /* right: 0; */
+        width: 100%;
+        z-index: 10003; /* Keep z-index high for mobile menu overlay */
 
-        z-index: 10003;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
         backdrop-filter: saturate(120%) blur(6px);
       }
+
       .topnav .inner {
-        max-width: 960px; margin: 0 auto; height: 60px;
-        display: flex; align-items: center; justify-content: space-between;
-        gap: 18px; padding: 0 18px;
+        max-width: 960px;
+        margin: 0 auto;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 18px;
       }
 
-      /* Brand */
-      .brand { display: flex; align-items: center; gap: 10px; }
-      .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
-      .brand a {
-        display: flex; align-items: center; gap: 10px;
-        font-weight: 800; font-size: 1.5em;
-        color: #fff; text-decoration: none;
+      /* Branding */
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
+
+      .brand img {
+        height: 40px;
+        width: auto;
+        filter: drop-shadow(0 0 4px rgba(0,0,0,0.3));
+      }
+
+      /* Keep lab name always white, no underline, single line */
       .topnav .brand a,
       .topnav .brand a:visited,
       .topnav .brand a:hover,
       .topnav .brand a:focus,
       .topnav .brand a:active {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 1.3em;
         color: #ffffff !important;
         text-decoration: none !important;
         border: none !important;
-        outline: none;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+
+      .topnav .brand span {
+        white-space: nowrap;
       }
 
       /* Menu links */
-      .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
+      .menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+      }
+
       .menu a {
         color: #fff;
         text-decoration: none;
@@ -79,174 +118,194 @@
         font-weight: 500;
         transition: color 0.3s ease, border-color 0.3s ease;
       }
-      .menu a:hover { color: #FFD700 !important; border-color: #FFD700 !important; }
 
-      /* Hamburger toggle */
+      .menu a:hover {
+        color: #FFD700 !important;
+        border-color: #FFD700 !important;
+      }
+
+      /* Hamburger toggle (mobile) */
       .menu-toggle {
         display: none;
-        border: none !important;
-        background: transparent !important;
-        color: #fff !important;
-        font-size: 1.6rem; cursor: pointer;
-        width: 44px; height: 44px;
-        align-items: center; justify-content: center;
-        position: relative;
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 1.6rem;
+        cursor: pointer;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
         z-index: 10004;
-        transition: color 0.3s ease;
-        -webkit-appearance: none; appearance: none;
-        -webkit-tap-highlight-color: transparent;
       }
-      .menu-toggle:hover { color: #FFD700 !important; }
-      .menu-toggle:focus,
-      .menu-toggle:active,
-      .menu-toggle:focus-visible {
-        outline: none !important;
-        background: transparent !important;
-        box-shadow: none !important;
-      }
-      .menu-toggle i { background: transparent !important; box-shadow: none !important; pointer-events: none; }
 
-      /* Right-side column for mobile */
+      .menu-toggle:focus {
+        outline: none;
+      }
+
+      .menu-toggle i {
+        pointer-events: none;
+      }
+
+      /* Mobile nav */
+      /* Note: When the nav is NOT fixed, the mobile menu needs its top position adjusted */
       @media (max-width: 768px) {
-        .menu-toggle { display: flex; }
+        /* Add a rule to position the mobile menu correctly now that .topnav is not fixed */
         .menu {
-          position: fixed;
-          top: 60px !important;
-          right: 0; bottom: 0;
-          width: 78%; max-width: 360px;
-          display: flex; flex-direction: column; gap: 16px;
-          background: transparent;
+            top: 0; /* Align to the top of the body/viewport */
+            height: 100vh; /* Make it full screen height */
+        }
+        
+        /* The mobile menu styling in media query remains mostly unchanged, but will be relative to the body */
+        .menu-toggle {
+          display: flex;
+        }
+
+        .menu {
+          position: fixed; /* Keep fixed for the mobile overlay effect */
+          /* top: 60px; REMOVED to align with the new scrolling topnav */
+          right: 0;
+          bottom: 0;
+          width: 78%;
+          max-width: 360px;
+          flex-direction: column;
+          gap: 16px;
+          background: rgba(0,0,0,0.88);
           padding: 40px 24px 24px;
           transform: translateX(100%);
           transition: transform 0.3s ease;
-          z-index: 10002 !important;
+          z-index: 10002;
         }
-        .topnav.open .menu { transform: translateX(0); }
-        .menu li { list-style: none; }
+        /* Mobile menu needs to be adjusted since .topnav is no longer fixed */
+        .topnav.open .menu {
+            top: 0; /* Make it start from the top of the viewport when open */
+        }
+        
         .menu a {
-          color: #fff !important;
-          font-size: 1.2em;
-          font-weight: 600;
-          text-decoration: none;
-          border: none;
-          transition: color 0.3s ease;
+          font-size: 1.1em;
+          border-bottom: none;
         }
-        .menu a:hover { color: #FFD700 !important; }
 
-        /* Dark background overlay (under the list) */
+        .topnav.open .menu {
+          transform: translateX(0);
+        }
+
         .nav-backdrop {
-          position: fixed; inset: 0;
-          background: rgba(0, 0, 0, 0.75);
-          opacity: 0; pointer-events: none;
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.75);
+          opacity: 0;
+          pointer-events: none;
           transition: opacity 0.3s ease;
-          z-index: 9999 !important;
+          z-index: 9999;
+          display: block;
         }
-        .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
 
-        /* Adjust logo text scale */
-        .brand img { height: 36px; }
-        .brand a { font-size: 1.25em; }
+        .topnav.open + .nav-backdrop {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .brand img {
+          height: 36px;
+        }
+
+        .topnav .brand a {
+          font-size: 1.25em;
+        }
       }
 
       @media (max-width: 420px) {
-        .menu { width: 85%; padding: 80px 20px 20px; }
-        .menu a { font-size: 1.07em; }
+        .menu {
+          width: 85%;
+          padding: 80px 20px 20px;
+        }
+
+        .menu a {
+          font-size: 1.05em;
+        }
       }
 
+      /* ------- Footer (Scrolling with content) ------- */
       #footer {
-        position: static; /* normal flow */
-        
-        /* full-width bar, same trick as .topnav */
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-      
-        text-align: center;
+        /* CHANGED: Removed position: fixed, bottom, left, right. 
+           This makes the footer scroll normally after the content. */
+        /* position: fixed; */
+        /* bottom: 0; */
+        /* left: 0; */
+        /* right: 0; */
+        width: 100%;
+
         padding: 25px 0;
-        background: rgba(0,0,0,0.25);
-        backdrop-filter: blur(6px);
-        border-top: 1px solid rgba(255,255,255,0.3);
+        background: rgba(0,0,0,0.15);
+        border-top: 1px solid rgba(255,255,255,0.5);
+        backdrop-filter: saturate(120%) blur(6px);
+
+        text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        flex-shrink: 0; /* don’t let flexbox compress it */
+        box-sizing: border-box;
+        z-index: 10001;
       }
 
-      
+      #footer ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
       #footer .icons {
-        display: flex; justify-content: center; align-items: center;
-        gap: 25px; margin-bottom: 8px; list-style: none; padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 8px;
       }
-      #footer .icons a { color: #fff; font-size: 1.3em; transition: color 0.3s ease; }
-      #footer .icons a:hover { color: #FFD700; }
-      #footer .copyright { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; }
+
+      #footer .icons a {
+        color: #fff;
+        font-size: 1.3em;
+        transition: color 0.3s ease;
+      }
+
+      #footer .icons a:hover {
+        color: #FFD700;
+      }
+
+      /* Remove footer separators */
+      #footer .copyright {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+
       #footer .copyright li {
-        display: block !important; margin: 3px 0 !important; padding: 0 !important;
-        border: 0 !important; background: none !important; box-shadow: none !important;
+        display: block !important;
+        margin: 3px 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-left: 0 !important;
+        background: none !important;
+        box-shadow: none !important;
       }
+
       #footer .copyright li::before,
-      #footer .copyright li::after { content: "" !important; display: none !important; }
-      #footer .copyright li:not(:first-child) { border-left: 0 !important; padding-left: 0 !important; margin-left: 0 !important; }
-
-      /* === Page header (replaces large logo area) === */
-      #header {
-        text-align: center;
-        margin-top: 40px;  /* small gap below nav now that nav is not fixed */
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        padding: 0 18px;
-      }
-      #header h1 {
-        margin-bottom: 0.3em;
-        color: #ffffff;
-        font-size: 2.5em;
-        font-weight: 700;
-      }
-      #header .subtitle-gold { color: #FDB719 !important; font-size: 1.1em; font-weight: 500; margin: 0.3em 0; }
-      #header .subtitle-small { color: #bfbfbf !important; font-size: 0.95em; font-weight: 400; margin-top: 4px; letter-spacing: 0.3px; }
-
-      @media (max-width: 768px) {
-        #header { margin-top: 28px; }
-        #header h1 { font-size: 1.8em; }
-        #header .subtitle-gold { font-size: 1em; }
-        #header .subtitle-small { font-size: 0.9em; }
+      #footer .copyright li::after {
+        content: "" !important;
+        display: none !important;
       }
 
-      /* === Publications content === */
-      .container { max-width: 960px; margin: 28px auto 0; padding: 0 18px; }
-      .year-group { margin: 28px 0 14px; }
-      .year-group h2 {
-        color: #fff; font-size: 1.3em; font-weight: 700; margin: 0 0 10px;
-        border-left: 4px solid #FDB719; padding-left: 10px;
+      #footer .copyright li:not(:first-child) {
+        border-left: 0 !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
       }
-
-      .pub-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-      .pub {
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.14);
-        border-radius: 12px;
-        padding: 16px;
-        backdrop-filter: blur(4px);
-      }
-      .pub .title {
-        color: #fff; font-weight: 700; line-height: 1.35; margin: 0 0 6px; font-size: 1.05em;
-      }
-      .pub .meta {
-        color: #dcdcdc; font-size: 0.95em; margin: 0 0 6px;
-      }
-      .pub .venue { color: #bfbfbf; font-size: 0.92em; }
-      .pub .doi a {
-        color: #FDB719; text-decoration: none; border-bottom: 1px dotted rgba(253,183,25,0.5);
-      }
-      .pub .doi a:hover { color: #FFD700; border-bottom-color: transparent; }
-
-      /* small utility */
-      .muted { color: #bfbfbf; }
     </style>
   </head>
 
   <body class="is-preload">
-    <!-- Top navigation -->
     <nav class="topnav" role="navigation" aria-label="Primary">
       <div class="inner">
         <div class="brand">
@@ -256,24 +315,24 @@
           </a>
         </div>
 
-        <!-- Hamburger / Close Toggle -->
-        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Open menu" title="Open menu">
+        <button class="menu-toggle" aria-expanded="false" aria-label="Open menu" title="Open menu">
           <i class="fa-solid fa-bars"></i>
         </button>
 
-        <!-- Menu -->
         <ul id="primary-menu" class="menu">
           <li><a href="team.html">Team</a></li>
           <li><a href="projects.html">Projects</a></li>
-          <li><a href="publications.html" style="border-color:#FFD700;color:#FFD700;">Publications</a></li>
+          <li><a href="publications.html">Publications</a></li>
           <li><a href="equipment.html">Equipment</a></li>
           <li><a href="photos.html">Photos</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="about.html">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </nav>
     <div class="nav-backdrop" hidden></div>
+
+    <main class="container" id="content">
 
     <!-- Page Header (same spacing/styling as home header) -->
     <header id="header">
@@ -543,9 +602,18 @@
           </li>
         </ul>
       </section>
-    </main>
+   
+    
+    
+    
+    
 
-    <!-- Footer (identical to home) -->
+
+
+      
+    
+    
+    </main>
     <footer id="footer">
       <ul class="icons">
         <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
@@ -555,11 +623,10 @@
       </ul>
       <ul class="copyright">
         <li>&copy; 2025 Barbosa Lab, University of Missouri. All rights reserved.</li>
-        <li>Website Developed by Marcelo Barbosa.</li>
+        <li>Website developed by Marcelo Barbosa.</li>
       </ul>
     </footer>
 
-    <!-- Same JS for mobile menu -->
     <script>
       (function () {
         const nav = document.querySelector('.topnav');
@@ -572,6 +639,7 @@
           document.documentElement.style.overflow = lock ? 'hidden' : '';
           document.body.style.overflow = lock ? 'hidden' : '';
         }
+
         function openMenu() {
           nav.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
@@ -581,6 +649,7 @@
           backdrop && backdrop.removeAttribute('hidden');
           lockScroll(true);
         }
+
         function closeMenu() {
           nav.classList.remove('open');
           btn.setAttribute('aria-expanded', 'false');
@@ -590,28 +659,30 @@
           backdrop && backdrop.setAttribute('hidden', '');
           lockScroll(false);
         }
+
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           nav.classList.contains('open') ? closeMenu() : openMenu();
         });
+
         backdrop && backdrop.addEventListener('click', closeMenu);
+
         window.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
+          if (e.key === 'Escape' && nav.classList.contains('open')) {
+            closeMenu();
+          }
         });
+
         menu.addEventListener('click', (e) => {
-          if (e.target.closest('a') && window.matchMedia('(max-width: 768px)').matches) closeMenu();
+          // IMPORTANT: Check if the element is currently fixed on mobile 
+          // to prevent it from closing if it's not actually open (which it shouldn't be now)
+          if (e.target.closest('a') && window.matchMedia('(max-width: 768px)').matches) {
+            closeMenu();
+          }
         });
       })();
     </script>
 
     <script src="assets/js/main.js"></script>
-
-  <script>
-    window.addEventListener("load", () => {
-      window.scrollTo(0, 0);
-    });
-  </script>
-    
-  
   </body>
 </html>
