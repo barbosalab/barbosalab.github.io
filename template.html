@@ -69,7 +69,7 @@
         filter: drop-shadow(0 0 4px rgba(0,0,0,0.3));
       }
 
-      /* Keep lab name always white, no underline */
+      /* Keep lab name always white, no underline, single line */
       .topnav .brand a,
       .topnav .brand a:visited,
       .topnav .brand a:hover,
@@ -79,12 +79,16 @@
         align-items: center;
         gap: 10px;
         font-weight: 800;
-        font-size: 1.5em;
+        font-size: 1.3em;  /* slightly smaller so it doesn’t wrap or look huge */
         color: #ffffff !important;
         text-decoration: none !important;
         border: none !important;
         box-shadow: none !important;
         outline: none !important;
+      }
+
+      .topnav .brand span {
+        white-space: nowrap;   /* prevents “Barbosa” and “Lab” from splitting */
       }
 
       /* Menu links */
