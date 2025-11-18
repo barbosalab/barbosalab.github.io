@@ -21,6 +21,10 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        /* leave room for fixed top and bottom bars */
+        padding-top: 60px;   /* nav height */
+        padding-bottom: 90px;/* footer height (approx) */
+        box-sizing: border-box;
       }
 
       main.container {
@@ -32,12 +36,13 @@
         box-sizing: border-box;
       }
 
-      /* ------- Top navigation ------- */
+      /* ------- Top navigation (fixed) ------- */
       .topnav {
-        position: relative;
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
         z-index: 10003;
 
         background: rgba(0,0,0,0.15);
@@ -79,7 +84,7 @@
         align-items: center;
         gap: 10px;
         font-weight: 800;
-        font-size: 1.3em;  /* slightly smaller so it doesn’t wrap or look huge */
+        font-size: 1.3em;
         color: #ffffff !important;
         text-decoration: none !important;
         border: none !important;
@@ -88,7 +93,7 @@
       }
 
       .topnav .brand span {
-        white-space: nowrap;   /* prevents “Barbosa” and “Lab” from splitting */
+        white-space: nowrap;
       }
 
       /* Menu links */
@@ -208,12 +213,13 @@
         }
       }
 
-      /* ------- Footer (bottom bar) ------- */
+      /* ------- Footer (fixed bottom bar) ------- */
       #footer {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-        margin-top: auto; /* pushes footer to bottom when content is short */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
 
         padding: 25px 0;
         background: rgba(0,0,0,0.15);
@@ -225,6 +231,7 @@
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
+        z-index: 10001;
       }
 
       #footer ul {
