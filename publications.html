@@ -9,12 +9,36 @@
 
     <style>
       /* ------- Base (copied from home to keep layout identical) ------- */
+      
+      html, body {
+        scroll-behavior: auto !important;
+        overflow-anchor: none;
+      }
+      
       html, body { overflow-x: hidden; }
-      body { padding-top: 64px; padding-bottom: 160px; } /* bottom pad so fixed footer doesn't cover content */
+
+      /* Remove any default body margin so nav can touch viewport edges */
+      body {
+        margin: 0;
+        padding-top: 0;
+        /* no padding-bottom now */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main.container {
+        flex: 1 0 auto;
+      }
 
       /* Top navigation */
       .topnav {
-        position: fixed; inset: 0 0 auto 0;
+        /* Make the bar span full viewport width, regardless of centered layout */
+        position: relative;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+
         z-index: 10003;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
@@ -129,15 +153,27 @@
         .menu a { font-size: 1.07em; }
       }
 
-      /* === Fixed centered footer at bottom === */
       #footer {
-        position: fixed; bottom: 0; left: 0; width: 100%;
-        text-align: center; padding: 25px 0;
-        background: rgba(0,0,0,0.25); backdrop-filter: blur(6px);
+        position: static; /* normal flow */
+        
+        /* full-width bar, same trick as .topnav */
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+      
+        text-align: center;
+        padding: 25px 0;
+        background: rgba(0,0,0,0.25);
+        backdrop-filter: blur(6px);
         border-top: 1px solid rgba(255,255,255,0.3);
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0; /* don’t let flexbox compress it */
       }
+
+      
       #footer .icons {
         display: flex; justify-content: center; align-items: center;
         gap: 25px; margin-bottom: 8px; list-style: none; padding: 0;
@@ -156,7 +192,7 @@
       /* === Page header (replaces large logo area) === */
       #header {
         text-align: center;
-        margin-top: 100px;
+        margin-top: 40px;  /* small gap below nav now that nav is not fixed */
         display: flex; flex-direction: column; align-items: center; justify-content: center;
         padding: 0 18px;
       }
@@ -170,14 +206,14 @@
       #header .subtitle-small { color: #bfbfbf !important; font-size: 0.95em; font-weight: 400; margin-top: 4px; letter-spacing: 0.3px; }
 
       @media (max-width: 768px) {
-        #header { margin-top: 80px; }
+        #header { margin-top: 28px; }
         #header h1 { font-size: 1.8em; }
         #header .subtitle-gold { font-size: 1em; }
         #header .subtitle-small { font-size: 0.9em; }
       }
 
       /* === Publications content === */
-      .container { max-width: 960px; margin: 28px auto 0; padding: 0 18px 40px; }
+      .container { max-width: 960px; margin: 28px auto 0; padding: 0 18px; }
       .year-group { margin: 28px 0 14px; }
       .year-group h2 {
         color: #fff; font-size: 1.3em; font-weight: 700; margin: 0 0 10px;
@@ -282,7 +318,7 @@
 
           <li class="pub">
             <div class="title">Deep convolutional networks based on lightweight YOLOv8 for the detection and estimation of peanut losses from images of the post-harvest environment</div>
-            <div class="meta">Brito Filho, A. L.; Carreira, V. S.; Souza, J. B. C.; Almeida, S. L. H.; Barbosa Júnior, M. R.; Carneiro, F. M.; Silva, R. P.</div>
+            <div class="meta">Brito Filho, A. L.; Carreira, V. S.; Souza, J. B. C.; Almeida, S. L. H; Barbosa Júnior, M. R.; Carneiro, F. M.; Silva, R. P.</div>
             <div class="venue">Computers and Electronics in Agriculture</div>
             <div class="doi">DOI: <a href="https://doi.org/10.1016/j.compag.2025.110282" target="_blank" rel="noopener">10.1016/j.compag.2025.110282</a></div>
           </li>
@@ -330,7 +366,7 @@
 
           <li class="pub">
             <div class="title">Monitoring coffee fruit maturity using an enhanced convolutional neural network under different image acquisition settings</div>
-            <div class="meta">Kazama, E. H.; Tedesco, D.; Carreira, V. S.; Barbosa Júnior, M. R.; Oliveira, M. F.; Ferreira, F. M.; Junior, W. M.; Silva, R. P.</div>
+            <div class="meta">Kazama, E. H.; Tedesco, D; Carreira, V. S.; Barbosa Júnior, M. R.; Oliveira, M. F.; Ferreira, F. M.; Junior, W. M.; Silva, R. P.</div>
             <div class="venue">Scientia Horticulturae</div>
             <div class="doi">DOI: <a href="https://doi.org/10.1016/j.scienta.2024.112957" target="_blank" rel="noopener">10.1016/j.scienta.2024.112957</a></div>
           </li>
@@ -569,5 +605,13 @@
     </script>
 
     <script src="assets/js/main.js"></script>
+
+  <script>
+    window.addEventListener("load", () => {
+      window.scrollTo(0, 0);
+    });
+  </script>
+    
+  
   </body>
 </html>
