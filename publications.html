@@ -19,13 +19,12 @@
 
       /* Remove any default body margin so nav can touch viewport edges */
       body {
-        margin: 0;
-        padding-top: 0;
-        /* no padding-bottom now */
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
+      margin: 0;
+      padding: 0;          /* <— reset both top and bottom (and sides) */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
       main.container {
         flex: 1 0 auto;
