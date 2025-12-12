@@ -32,11 +32,12 @@
 
       /* Top navigation */
       .topnav {
+        /* Make the bar span full viewport width, regardless of centered layout */
         position: relative;
         width: 100vw;
         margin-left: calc(50% - 50vw);
         margin-right: calc(50% - 50vw);
-        
+
         z-index: 10003;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
@@ -53,7 +54,7 @@
       .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
       .brand a {
         display: flex; align-items: center; gap: 10px;
-        font-weight: 800; font-size: 1.3em;
+        font-weight: 800; font-size: 1.5em;
         color: #fff; text-decoration: none;
       }
       
@@ -85,7 +86,6 @@
         letter-spacing: 0.2px;
         transition: color 0.3s ease, border-color 0.3s ease;
       }
-      
       .menu a:hover { color: #FFD700 !important; border-color: #FFD700 !important; }
 
       /* Hamburger toggle */
