@@ -14,12 +14,17 @@
 
       /* Top navigation */
       .topnav {
-        position: fixed; inset: 0 0 auto 0;
+        position: relative;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        
         z-index: 10003;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
         backdrop-filter: saturate(120%) blur(6px);
       }
+      
       .topnav .inner {
         max-width: 960px; margin: 0 auto; height: 60px;
         display: flex; align-items: center; justify-content: space-between;
@@ -409,6 +414,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
