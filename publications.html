@@ -32,12 +32,7 @@
 
       /* Top navigation */
       .topnav {
-        /* Make the bar span full viewport width, regardless of centered layout */
-        position: relative;
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-
+        position: fixed; inset: 0 0 auto 0;
         z-index: 10003;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
@@ -86,6 +81,7 @@
         letter-spacing: 0.2px;
         transition: color 0.3s ease, border-color 0.3s ease;
       }
+      
       .menu a:hover { color: #FFD700 !important; border-color: #FFD700 !important; }
 
       /* Hamburger toggle */
