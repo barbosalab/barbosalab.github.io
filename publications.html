@@ -611,21 +611,39 @@
         });
       })();
     </script>
+  
+    <script src="assets/js/main.js"></script>
 
-<script>
+    <script>
+  // Force scroll to top when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+    
+    // Additional safeguard for slow-loading content
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 100);
+  });
+
+  // Also on window load
+  window.addEventListener('load', function() {
+    window.scrollTo(0, 0);
+  });
+
+  // Handle back/forward navigation
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      window.scrollTo(0, 0);
+    }
+  });
+
+  // Disable browser scroll restoration
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
 </script>
-  
-    <script src="assets/js/main.js"></script>
 
-  <script>
-  window.addEventListener("pageshow", function () {
-    window.scrollTo(0, 0);
-  });
-</script>
-    
-  
   </body>
 </html>
