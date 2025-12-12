@@ -9,8 +9,25 @@
 
     <style>
       /* ------- Base ------- */
+      html, body {
+        scroll-behavior: auto !important;
+        overflow-anchor: none;
+      }
+      
       html, body { overflow-x: hidden; }
-      body { padding-top: 64px; }
+
+      /* Remove any default body margin so nav can touch viewport edges */
+      body {
+      margin: 0;
+      padding: 0;          /* <— reset both top and bottom (and sides) */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+      main.container {
+        flex: 1 0 auto;
+      }
 
       /* Top navigation */
       .topnav {
@@ -415,6 +432,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
