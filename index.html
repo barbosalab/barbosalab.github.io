@@ -9,29 +9,17 @@
 
     <style>
       /* ------- Base ------- */
-      html, body {
-        scroll-behavior: auto !important;
-        overflow-anchor: none;
-      }
-      
       html, body { overflow-x: hidden; }
-
-      /* Remove any default body margin so nav can touch viewport edges */
-      body {
-      margin: 0;
-      padding: 0;          /* <— reset both top and bottom (and sides) */
-      }
+      body { padding-top: 64px; }
 
       /* Top navigation */
       .topnav {
-        /* Make the bar span full viewport width, regardless of centered layout */
-        position: relative;
+        position: fixed; inset: 0 0 auto 0;
         z-index: 10003;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
         backdrop-filter: saturate(120%) blur(6px);
       }
-      
       .topnav .inner {
         max-width: 960px; margin: 0 auto; height: 60px;
         display: flex; align-items: center; justify-content: space-between;
@@ -236,7 +224,7 @@
       /* === Header layout, spacing, and font styling === */
       #header {
         text-align: center;
-        margin-top: 0px;
+        margin-top: 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -421,13 +409,6 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
 
 
 
