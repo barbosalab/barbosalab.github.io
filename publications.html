@@ -1,43 +1,45 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Barbosa Lab — Publications</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fonts / Icons -->
+  <!-- Main theme CSS -->
+  <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
   <style>
-    /* ===== Base reset ===== */
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
+    /* ================= BASE ================= */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
       scroll-behavior: auto;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      background: #0f0f0f;
-      color: #ffffff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      font-family: inherit;
     }
 
-    /* ===== Top Navigation ===== */
-    nav {
+    /* ================= TOP NAV ================= */
+    .topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      background: rgba(0,0,0,0.35);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255,255,255,0.15);
+      z-index: 10003;
+      background: rgba(0,0,0,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: saturate(120%) blur(6px);
     }
 
-    .nav-inner {
+    .topnav .inner {
       max-width: 960px;
       margin: 0 auto;
-      height: 64px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -48,80 +50,91 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 800;
-      font-size: 1.1rem;
-      white-space: nowrap;
     }
 
     .brand img {
-      height: 36px;
+      height: 40px;
+      width: auto;
+    }
+
+    .brand span {
+      font-weight: 800;
+      font-size: 1.3em;
+      white-space: nowrap;
     }
 
     .brand a {
-      color: #ffffff;
+      color: #fff;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .menu {
-      display: flex;
-      gap: 18px;
       list-style: none;
-      padding: 0;
+      display: flex;
+      gap: 20px;
       margin: 0;
+      padding: 0;
     }
 
     .menu a {
-      color: #ffffff;
+      color: #fff;
       text-decoration: none;
-      font-size: 0.9rem;
+      padding: 6px 2px;
       border-bottom: 2px solid transparent;
+      font-weight: 500;
+      transition: color .3s, border-color .3s;
     }
 
     .menu a:hover {
-      color: #FDB719;
-      border-color: #FDB719;
+      color: #FFD700;
+      border-color: #FFD700;
     }
 
-    /* ===== Page Header ===== */
-    header {
-      max-width: 960px;
-      margin: 40px auto 20px;
-      padding: 0 18px;
+    /* ================= HEADER ================= */
+    header.page-header {
+      padding-top: 100px;
+      padding-bottom: 40px;
       text-align: center;
+      max-width: 960px;
+      margin: 0 auto;
     }
 
-    header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
+    header.page-header h1 {
+      font-size: 2.5em;
+      margin-bottom: .2em;
     }
 
-    header p {
+    header.page-header p {
       color: #FDB719;
-      font-size: 1.05rem;
+      font-size: 1.1em;
+      margin: 0;
     }
 
-    /* ===== Content ===== */
+    /* ================= PUBLICATIONS ================= */
     main {
       max-width: 960px;
-      margin: 0 auto 60px;
-      padding: 0 18px;
+      margin: 0 auto;
+      padding: 0 18px 80px;
     }
 
-    .year {
-      margin-top: 36px;
+    section.year {
+      margin-bottom: 48px;
     }
 
-    .year h2 {
+    section.year h2 {
       border-left: 4px solid #FDB719;
-      padding-left: 10px;
-      font-size: 1.3rem;
-      margin-bottom: 16px;
+      padding-left: 12px;
+      margin-bottom: 18px;
+      font-size: 1.4em;
     }
 
     .pub {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
       padding: 16px;
       margin-bottom: 14px;
     }
@@ -132,43 +145,72 @@
     }
 
     .pub-authors {
-      color: #d0d0d0;
-      font-size: 0.95rem;
+      color: #dcdcdc;
+      font-size: 0.95em;
       margin-bottom: 4px;
     }
 
     .pub-journal {
+      font-size: 0.95em;
       color: #bfbfbf;
-      font-size: 0.9rem;
     }
 
-    .pub a {
+    .pub-journal a {
       color: #FDB719;
       text-decoration: none;
     }
 
-    .pub a:hover {
-      text-decoration: underline;
+    .pub-journal a:hover {
+      color: #FFD700;
     }
 
-    /* ===== Footer ===== */
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding: 24px 18px;
+    /* ================= FOOTER ================= */
+    footer#footer {
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(6px);
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding: 25px 0;
       text-align: center;
-      color: #bfbfbf;
+    }
+
+    #footer .icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      list-style: none;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+
+    #footer .icons a {
+      color: #fff;
+      font-size: 1.3em;
+    }
+
+    #footer .icons a:hover {
+      color: #FFD700;
+    }
+
+    #footer .copyright {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #ccc;
+      font-size: 0.9em;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-inner">
+  <!-- ================= NAV ================= -->
+  <nav class="topnav">
+    <div class="inner">
       <div class="brand">
-        <img src="images/logo.png" alt="Barbosa Lab Logo">
-        <a href="index.html">Barbosa Lab</a>
+        <a href="index.html">
+          <img src="images/logo.png" alt="Barbosa Lab Logo">
+          <span>Barbosa Lab</span>
+        </a>
       </div>
 
       <ul class="menu">
@@ -184,12 +226,11 @@
     </div>
   </nav>
 
-  <!-- Header -->
-  <header>
+  <!-- ================= HEADER ================= -->
+  <header class="page-header">
     <h1>Publications</h1>
     <p>Peer-reviewed research advancing precision agriculture</p>
   </header>
-
 
 <main>
 
@@ -418,69 +459,20 @@
 </main>
 
 
+  <!-- ================= FOOTER ================= -->
+  <footer id="footer">
+    <ul class="icons">
+      <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"></a></li>
+      <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"></a></li>
+      <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"></a></li>
+      <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"></a></li>
+    </ul>
 
-<!-- Footer (identical to home) -->
-<footer id="footer">
-  <ul class="icons">
-    <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
-    <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-    <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-    <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
-  </ul>
-  <ul class="copyright">
-    <li>&copy; 2025 Barbosa Lab, University of Missouri. All rights reserved.</li>
-    <li>Website Developed by Marcelo Barbosa.</li>
-  </ul>
-</footer>
-
-<!-- Same JS for mobile menu -->
-<script>
-  (function () {
-    const nav = document.querySelector('.topnav');
-    const btn = document.querySelector('.menu-toggle');
-    const icon = btn.querySelector('i');
-    const menu = document.getElementById('primary-menu');
-    const backdrop = document.querySelector('.nav-backdrop');
-
-    function lockScroll(lock) {
-      document.documentElement.style.overflow = lock ? 'hidden' : '';
-      document.body.style.overflow = lock ? 'hidden' : '';
-    }
-    function openMenu() {
-      nav.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
-      btn.setAttribute('aria-label', 'Close menu');
-      btn.title = 'Close menu';
-      icon.classList.replace('fa-bars', 'fa-xmark');
-      backdrop && backdrop.removeAttribute('hidden');
-      lockScroll(true);
-    }
-    function closeMenu() {
-      nav.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', 'Open menu');
-      btn.title = 'Open menu';
-      icon.classList.replace('fa-xmark', 'fa-bars');
-      backdrop && backdrop.setAttribute('hidden', '');
-      lockScroll(false);
-    }
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      nav.classList.contains('open') ? closeMenu() : openMenu();
-    });
-    backdrop && backdrop.addEventListener('click', closeMenu);
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
-    });
-    menu.addEventListener('click', (e) => {
-      if (e.target.closest('a') && window.matchMedia('(max-width: 768px)').matches) closeMenu();
-    });
-  })();
-</script>
-
-
- 
+    <ul class="copyright">
+      <li>&copy; 2025 Barbosa Lab, University of Missouri. All rights reserved.</li>
+      <li>Website developed by Marcelo Barbosa.</li>
+    </ul>
+  </footer>
 
 </body>
 </html>
-
