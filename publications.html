@@ -27,7 +27,7 @@
   <style>
     /* === Global animated background (Index + Publications) === */
     body {
-      background: #07161f; /* fallback */
+      background: #0b1e22; /* fallback */
       position: relative;
       overflow-x: hidden;
     }
@@ -41,15 +41,16 @@
     
       background: linear-gradient(
         135deg,
-        #07161f 0%,
-        #0b2a3a 30%,
-        #0f1f2a 55%,
-        #09141c 75%,
-        #07161f 100%
+        #0b1e22 0%,   /* deep blue */
+        #0f3b3a 20%,  /* teal */
+        #1e4d3a 35%,  /* green */
+        #4a3a2a 55%,  /* brown */
+        #6b4a2f 70%,  /* warm amber */
+        #0b1e22 100%  /* back to blue */
       );
     
-      background-size: 300% 300%;
-      animation: gradientShift 30s ease infinite;
+      background-size: 400% 400%;
+      animation: gradientShiftFast 18s ease-in-out infinite;
     }
     
     /* Slow cinematic motion */
