@@ -25,25 +25,41 @@
 
 
   <style>
+    /* === Global animated background (Index + Publications) === */
     body {
-      background: linear-gradient(
-        -45deg,
-        #000000,
-        #0b0b0b,
-        #101010,
-        #000000
-      );
-      background-size: 400% 400%;
-      animation: gradientBG 20s ease infinite;
+      background: #07161f; /* fallback */
+      position: relative;
+      overflow-x: hidden;
     }
     
-    /* Gradient animation */
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+    /* Animated gradient layer */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    
+      background: linear-gradient(
+        135deg,
+        #07161f 0%,
+        #0b2a3a 30%,
+        #0f1f2a 55%,
+        #09141c 75%,
+        #07161f 100%
+      );
+    
+      background-size: 300% 300%;
+      animation: gradientShift 30s ease infinite;
+    }
+    
+    /* Slow cinematic motion */
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
+    
     * { box-sizing: border-box; }
 
     body {
