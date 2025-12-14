@@ -312,59 +312,63 @@
 
 
 
-
-
-    /* ================= PROFILE SECTION ================= */
-    .profile {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 40px;
-      align-items: center;
-      margin-top: 40px;
+    
+    
+       /* ================= TEAM LIST ================= */
+    .team {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      margin-top: 60px;
     }
     
-    .profile-photo img {
+    .member {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    .member-photo img {
       width: 100%;
-      max-width: 280px;
+      max-width: 220px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.2);
     }
     
-    .profile-text h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.8rem;
+    .member-text h3 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
       font-weight: 700;
       color: #ffffff;
     }
     
-    .profile-text h3 {
-      margin-top: 0;
-      margin-bottom: 16px;
-      font-size: 1.1rem;
-      font-weight: 400;
+    .member-text .role {
+      display: block;
+      margin-bottom: 12px;
       color: #FDB719;
+      font-size: 0.95rem;
     }
     
-    .profile-text p {
+    .member-text p {
       color: #d0d0d0;
-      font-size: 1rem;
+      font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 14px;
     }
     
     /* Responsive */
     @media (max-width: 768px) {
-      .profile {
+      .member {
         grid-template-columns: 1fr;
         text-align: center;
       }
     
-      .profile-photo img {
+      .member-photo img {
         margin: 0 auto;
       }
     }
     
+        
 
 
 
@@ -432,19 +436,25 @@
       Dr. Barbosa’s faculty appointment includes research (60%) and Extension (40%). His program focuses on integrating cutting-edge technologies to advance and support modern agricultural production systems. His work centers on the use of remote sensing, unmanned aerial systems (UAS/drones), robotics, automation, and artificial intelligence to enhance data collection and improve the speed, sustainability, and precision of on-farm decision-making. More specifically, his research includes the development of predictive and forecasting models for crop yield, quality, and plant health; autonomous and semi-autonomous crop management solutions; and decision-support systems that translate complex data into actionable recommendations for growers. He is particularly interested in bridging the gap between emerging technologies and real-world agricultural applications, ensuring that innovative tools are practical, scalable, and accessible for producers. He collaborates closely with industry partners, producers, and interdisciplinary research teams to deliver applied solutions that increase efficiency, reduce resource use, and promote resilient and sustainable crop production.
       </p>
 
-
-    <!-- SOMEBODY -->
-    <div class="profile-photo">
-      <img src="images/photo_marcelo.jpeg" alt="Dr. Marcelo Barbosa">
+  <section class="team">
+  
+    <!-- TEAM MEMBER -->
+    <div class="member">
+      <div class="member-photo">
+        <img src="images/photo_marcelo.jpeg" alt="Marcelo Barbosa">
+      </div>
+      <div class="member-text">
+        <h3>Marcelo Barbosa</h3>
+        <span class="role">PhD Student — Remote Sensing</span>
+        <p>
+          Marcelo’s research focuses on UAV-based crop monitoring,
+          vegetation indices, and machine learning models for
+          yield forecasting.
+        </p>
+      </div>
     </div>
 
-    <div class="profile-text">
-      <h2>Dr. Marcelo Barbosa</h2>
-      <h3>Assistant Research Professor & State Extension Specialist for Precision Agriculture</h3>
-
-      <p>
-      Dr. Barbosa’s faculty appointment includes research (60%) and Extension (40%). His program focuses on integrating cutting-edge technologies to advance and support modern agricultural production systems. His work centers on the use of remote sensing, unmanned aerial systems (UAS/drones), robotics, automation, and artificial intelligence to enhance data collection and improve the speed, sustainability, and precision of on-farm decision-making. More specifically, his research includes the development of predictive and forecasting models for crop yield, quality, and plant health; autonomous and semi-autonomous crop management solutions; and decision-support systems that translate complex data into actionable recommendations for growers. He is particularly interested in bridging the gap between emerging technologies and real-world agricultural applications, ensuring that innovative tools are practical, scalable, and accessible for producers. He collaborates closely with industry partners, producers, and interdisciplinary research teams to deliver applied solutions that increase efficiency, reduce resource use, and promote resilient and sustainable crop production.
-      </p>
+  </section>
 
 
     </div>
