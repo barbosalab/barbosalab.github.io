@@ -25,14 +25,14 @@
 
 
   <style>
-    /* === Global animated background (Index + Publications) === */
+        /* === Global animated gradient background === */
     body {
       background: #0b1e22; /* fallback */
       position: relative;
       overflow-x: hidden;
     }
     
-    /* Animated gradient layer */
+    /* Gradient layer */
     body::before {
       content: "";
       position: fixed;
@@ -53,12 +53,13 @@
       animation: gradientShiftFast 18s ease-in-out infinite;
     }
     
-    /* Slow cinematic motion */
-    @keyframes gradientShift {
+    /* Faster, smooth transition */
+    @keyframes gradientShiftFast {
       0%   { background-position: 0% 50%; }
       50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
 
     
     * { box-sizing: border-box; }
