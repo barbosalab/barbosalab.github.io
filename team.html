@@ -366,11 +366,35 @@
       .member-photo img {
         margin: 0 auto;
       }
+      
+      /* Alternate layout: photo on the right */
+      .member.reverse {
+        grid-template-columns: 1fr 220px;
+      }
+      
+      .member.reverse .member-photo {
+        order: 2;
+      }
+      
+      .member.reverse .member-text {
+        order: 1;
+      }
+      
+      /* Mobile: always stack photo on top */
+      @media (max-width: 768px) {
+        .member.reverse {
+          grid-template-columns: 1fr;
+        }
+      
+        .member.reverse .member-photo,
+        .member.reverse .member-text {
+          order: unset;
+        }
+      }
+
     }
     
         
-
-
 
 
 
@@ -438,7 +462,7 @@
     </div>
   
     <!-- TEAM MEMBER -->
-    <div class="member">
+    <div class="member reverse">
       <div class="member-photo">
         <img src="images/photo_marcelo.jpeg" alt="Dr. Marcelo Barbosa">
       </div>
