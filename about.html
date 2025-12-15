@@ -312,92 +312,67 @@
 
 
 
-/* === Header layout, spacing, and font styling === */
-    #header {
-      text-align: center;
-      margin-top: 100px;
+    
+    
+       /* ================= TEAM LIST ================= */
+    .team {
       display: flex;
       flex-direction: column;
+      gap: 60px;
+      margin-top: 60px;
+    }
+    
+    .member {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
       align-items: center;
-      justify-content: center;
     }
-
-    /* Big logo */
-    #header img.header-logo {
-      display: block;
-      width: auto;
-      height: 300px !important;
-      max-height: none !important;
-      max-width: 90vw;
+    
+    .member-photo img {
+      width: 100%;
+      max-width: 220px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
     }
-
-    @media (max-width: 991.98px) {
-      #header img.header-logo {
-        height: 240px !important;
-      }
-    }
-
-    @media (max-width: 768px) {
-      #header img.header-logo {
-        height: 200px !important;
-      }
-    }
-
-    @media (max-width: 480px) {
-      #header img.header-logo {
-        height: 200px !important;
-      }
-    }
-
-    #header h1 {
-      margin-bottom: 0.3em;
-      color: #ffffff;
-      font-size: 2.5em;
+    
+    .member-text h3 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
       font-weight: 700;
+      color: #ffffff;
     }
-
-    #header p {
-      margin: 0.15em 0 !important;
-      line-height: 1.3 !important;
-      color: #FDB719 !important;
-      font-weight: 300;
-      font-size: 1.5em;
+    
+    .member-text .role {
+      display: block;
+      margin-bottom: 12px;
+      color: #FDB719;
+      font-size: 0.95rem;
     }
-
-    #header .subtitle-gold {
-      color: #FDB719 !important;
-      font-size: 1.7em;
-      font-weight: 400;
-      margin: 0.15em 0;
-      line-height: 1.3;
+    
+    .member-text p {
+      color: #d0d0d0;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
-
-    #header .subtitle-small {
-      color: #bfbfbf !important;
-      font-size: 1em;
-      font-weight: 400;
-      margin-top: 4px;
-      letter-spacing: 0.3px;
-    }
-
+    
+    /* Responsive */
     @media (max-width: 768px) {
-      #header {
-        margin-top: 80px;
+      .member {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
-      #header .header-logo {
-        height: 70px;
-        margin-bottom: 8px;
-      }
-      #header h1 {
-        font-size: 1.6em;
-      }
-      #header p {
-        font-size: 0.9em;
+    
+      .member-photo img {
+        margin: 0 auto;
       }
     }
+        
 
 
 
+
+    
   </style>
 </head>
 
@@ -430,39 +405,47 @@
 
 <div class="nav-backdrop"></div>
 
-
-
-
-
-
-
-  
 <!-- HEADER -->
 <header>
-  <h1>Coming soon</h1>
+  <h1>Team</h1>
+  <p></p>
 </header>
 
 
 
 
-
-
   
-
 <main>
 
-
-
-
-
-
-
-
-
-
-
+  <section class="team">
   
+    <!-- TEAM MEMBER -->
+    <div class="member">
+      <div class="member-photo">
+        <img src="images/photo_marcelo.jpeg" alt="Dr. Marcelo Barbosa">
+      </div>
+      <div class="member-text">
+        <h3>Dr. Marcelo Barbosa</h3>
+        <span class="role">Assistant Research Professor & State Extension Specialist for Precision Agriculture</span>
+        <p>
+          Agronomist, Master’s, and PhD. In short, an academic journey dedicated to technological development through Research and Extension. My academic journey began in 2014 at the Federal University of Alagoas (UFAL), where I started as an undergraduate student in Agronomy. Five years after joining UFAL, I completed my undergraduate degree and started a master's degree in the Postgraduate Program in Agronomy (Plant Production) at São Paulo State University (Unesp). In 2021, I completed my master's degree and started my PhD in the same program. During my PhD, I had an internship period at Louisiana State University (LSU AgCenter), broadening my perspectives on precision agriculture. In general, during my graduate studies, I focused on research that integrates remote sensing and artificial intelligence-based analysis to address common problems in agriculture. Moreover, I was a Post-Doctoral Associate in the Department of Horticulture at the University of Georgia (UGA), always seeking to integrate cutting-edge technologies (e.g., robots, UAVs, and AI) as an alternative to support the future of agricultural production. Currently, I am an Assistant Research Professor and State Extension Specialist for Precision Agriculture at the University of Missouri – Fisher Delta REEC. My focus is on integrating cutting-edge technologies (e.g., drones, robotics, automation, AI, etc.) into agriculture.        </p>
+      </div>
+    </div>
+
+
+
+    
+  
+  </section>
+
+
+
+    </div>
+
+  </section>
+
 </main>
+
 
 
 <!-- FOOTER -->
