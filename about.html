@@ -394,9 +394,64 @@
       }
         
 
+      /* ================= MISSION • VISION • VALUES ================= */
+      
+      .mvv {
+        max-width: 960px;
+        margin: 80px auto 0;
+        padding: 0 18px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+      }
+      
+      .mvv-item {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 14px;
+        padding: 28px;
+        text-align: center;
+      }
+      
+      .mvv-item h2 {
+        margin-top: 0;
+        margin-bottom: 14px;
+        color: #FDB719;
+        font-size: 1.35rem;
+        font-weight: 700;
+      }
+      
+      .mvv-item p {
+        color: #d0d0d0;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        text-align: justify;
+      }
+      
+      .mvv-item ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .mvv-item ul li {
+        color: #d0d0d0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+      
+      /* Responsive */
+      @media (max-width: 900px) {
+        .mvv {
+          grid-template-columns: 1fr;
+        }
+      }
 
 
 
+
+    
     
   </style>
 </head>
@@ -457,12 +512,43 @@
       </div>
     </div>
   
-
-
-
-    
-  
   </section>
+
+
+  
+  <section class="mvv">
+
+  <div class="mvv-item">
+    <h2>Mission</h2>
+    <p>
+      To develop and transfer cutting-edge precision agriculture technologies by
+      integrating remote sensing, artificial intelligence, robotics, and data-driven
+      decision support systems to enhance agricultural productivity, sustainability,
+      and resilience.
+    </p>
+  </div>
+
+  <div class="mvv-item">
+    <h2>Vision</h2>
+    <p>
+      To be an internationally recognized research and extension program that bridges
+      science and practice, empowering growers, stakeholders, and communities through
+      innovative digital agriculture solutions.
+    </p>
+  </div>
+
+  <div class="mvv-item">
+    <h2>Values</h2>
+    <ul>
+      <li>Scientific rigor and innovation</li>
+      <li>Stakeholder-driven research and extension</li>
+      <li>Interdisciplinary collaboration</li>
+      <li>Sustainability and responsible technology adoption</li>
+      <li>Equity, inclusion, and workforce development</li>
+    </ul>
+  </div>
+
+</section>
 
 
 
