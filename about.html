@@ -309,47 +309,26 @@
       flex-direction: column;
       gap: 4px;
     }
+
+
+
     
-    .member-photo-wrapper {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;   /* centers relative to the page */
-    }
-    
-    .academic-links {
-      margin-top: 16px;
-      display: flex;
-      justify-content: center;
-      gap: 26px;
-    }
-    
-    .academic-links a {
-      color: #ffffff;
-      font-size: 1.9rem;   /* big & readable */
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .academic-links a:hover {
-      color: #FDB719;
-    }
-    
-    
-        
     
        /* ================= TEAM LIST ================= */
-    .about {
+    .team {
       display: flex;
-      justify-content: center;
-      padding: 40px 20px;
+      flex-direction: column;
+      gap: 60px;
+      margin-top: 60px;
     }
     
     .member {
-      max-width: 760px;        /* controls text width */
-      text-align: center;     /* centers name + role */
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
+      align-items: center;
     }
-
+    
     .member-photo img {
       width: 100%;
       max-width: 220px;
@@ -357,30 +336,26 @@
       border: 1px solid rgba(255,255,255,0.2);
     }
     
-    .member h3 {
+    .member-text h3 {
       margin: 0 0 6px;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: #ffffff;
     }
     
-    .member .role {
+    .member-text .role {
       display: block;
-      margin-bottom: 22px;
+      margin-bottom: 12px;
       color: #FDB719;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
     }
     
-    /* JUSTIFIED TEXT */
-    .member .bio {
-      text-align: justify;          /* ← justified */
-      text-justify: inter-word;
+    .member-text p {
       color: #d0d0d0;
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
     
-        
     /* Responsive */
     @media (max-width: 768px) {
       .member {
@@ -392,41 +367,35 @@
         margin: 0 auto;
       }
     }
+
+          /* Alternate layout: photo on the right */
+      .member.reverse {
+        grid-template-columns: 1fr 220px;
+      }
+      
+      .member.reverse .member-photo {
+        order: 2;
+      }
+      
+      .member.reverse .member-text {
+        order: 1;
+      }
+      
+      /* Mobile: always stack photo on top */
+      @media (max-width: 768px) {
+        .member.reverse {
+          grid-template-columns: 1fr;
+        }
+      
+        .member.reverse .member-photo,
+        .member.reverse .member-text {
+          order: unset;
+        }
+      }
         
-    /* ================= ACADEMIC SOCIAL LINKS ================= */
-    .academic-links {
-      margin-top: 16px;
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    
-    .academic-links a {
-      color: #ffffff;
-      font-size: 1.8rem;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .academic-links a:hover {
-      color: #FDB719;
-    }
-    
-    /* Text-based icons (Scopus / WoS) */
-    .academic-links .text-icon {
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
 
 
 
-
-
-
-
-    
 
     
   </style>
@@ -476,40 +445,23 @@
   <section class="team">
   
     <!-- TEAM MEMBER -->
-      <div class="member-photo-wrapper">
-      
-        <div class="member-photo">
-          <img src="images/photo_marcelo.jpeg" alt="Dr. Marcelo Barbosa">
-        </div>
+    <div class="member">
+      <div class="member-photo">
+        <img src="images/photo_marcelo.jpeg" alt="Dr. Marcelo Barbosa">
       </div>
-
       <div class="member-text">
-        <h3>Dr. Marcelo Barbosa</h3>
+        <h3>Dr. Marcelo Barbosa (Principal Investigator-PI)</h3>
         <span class="role">Assistant Research Professor & State Extension Specialist for Precision Agriculture</span>
         <p>
           Agronomist, Master’s, and PhD. In short, an academic journey dedicated to technological development through Research and Extension. My academic journey began in 2014 at the Federal University of Alagoas (UFAL), where I started as an undergraduate student in Agronomy. Five years after joining UFAL, I completed my undergraduate degree and started a master's degree in the Postgraduate Program in Agronomy (Plant Production) at São Paulo State University (Unesp). In 2021, I completed my master's degree and started my PhD in the same program. During my PhD, I had an internship period at Louisiana State University (LSU AgCenter), broadening my perspectives on precision agriculture. In general, during my graduate studies, I focused on research that integrates remote sensing and artificial intelligence-based analysis to address common problems in agriculture. Moreover, I was a Post-Doctoral Associate in the Department of Horticulture at the University of Georgia (UGA), always seeking to integrate cutting-edge technologies (e.g., robots, UAVs, and AI) as an alternative to support the future of agricultural production. Currently, I am an Assistant Research Professor and State Extension Specialist for Precision Agriculture at the University of Missouri – Fisher Delta REEC. My focus is on integrating cutting-edge technologies (e.g., drones, robotics, automation, AI, etc.) into agriculture.        </p>
       </div>
-
-            <!-- Academic / Social icons -->
-        <div class="academic-links">
-          <a href="https://scholar.google.com" target="_blank" aria-label="Google Scholar">
-            <i class="fa-solid fa-graduation-cap"></i>
-          </a>
-          <a href="https://www.scopus.com" target="_blank">Scopus</a>
-          <a href="https://www.webofscience.com" target="_blank">WoS</a>
-          <a href="https://www.researchgate.net" target="_blank" aria-label="ResearchGate">
-            <i class="fa-brands fa-researchgate"></i>
-          </a>
-          <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-        </div>
-      
-      </div>
-
-      <div class="academic-links">
     </div>
+  
 
+
+
+    
+  
   </section>
 
 
