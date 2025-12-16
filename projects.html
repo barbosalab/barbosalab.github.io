@@ -426,12 +426,27 @@
       color: #e0e0e0;
     }
     
-    /* Tools grid */
+    /* Tools grid — controlled layout */
     .project-tools {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr); /* 1×4 on desktop */
       gap: 30px;
     }
+    
+    /* Tablets: 2×2 */
+    @media (max-width: 1024px) {
+      .project-tools {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    /* Mobile: 1×1 */
+    @media (max-width: 600px) {
+      .project-tools {
+        grid-template-columns: 1fr;
+      }
+    }
+
     
     .tool-card {
       background: rgba(255,255,255,0.05);
