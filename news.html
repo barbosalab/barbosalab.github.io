@@ -397,52 +397,53 @@
     }
 
     
-        /* ================= NEWS HERO ================= */
-    .news-hero {
-      position: relative;
+    /* ================= NEWS IMAGE BANNER ================= */
+    .news-banner {
       max-width: 960px;
-      margin: 40px auto 60px;
-      padding: 110px 28px;   /* ⬅ more vertical space */
-      min-height: 420px;    /* ⬅ guarantees height even with short text */
+      margin: 40px auto 24px;
       border-radius: 18px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(0,0,0,0.55);
     }
     
-    .news-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url("images/FDREEC.jpeg") center / cover no-repeat;
-      opacity: 0.25; /* controls image visibility */
-      z-index: 0;
+    .news-banner img {
+      width: 100%;
+      height: 420px;          /* controls banner height */
+      object-fit: cover;      /* crops image cleanly */
+      object-position: center 20%; /* keeps top visible */
+      display: block;
     }
     
-    .news-hero-content {
-      position: relative;
-      z-index: 1;
+    /* ================= NEWS TEXT ================= */
+    .news-text {
+      max-width: 960px;
+      margin: 0 auto 50px;
+      padding: 28px 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
       text-align: center;
     }
     
-    .news-hero h2 {
+    .news-text h2 {
       font-size: 1.9rem;
       margin-bottom: 12px;
       color: #ffffff;
     }
     
-    .news-hero p {
+    .news-text p {
       font-size: 1.05rem;
       color: #d8d8d8;
       max-width: 760px;
       margin: 0 auto;
-      line-height: 1.6;
+      line-height: 1.65;
     }
     
-    .news-hero .highlight {
+    .news-text .highlight {
       color: #FDB719;
       font-weight: 600;
     }
+
 
 
 
@@ -496,19 +497,24 @@
   <h1>News & Updates</h1>
 </header>
 
-  <header>
-  <div class="news-hero">
-    <div class="news-hero-content">
-      <h2>Barbosa Lab Launches at the University of Missouri</h2>
-      <p>
-        The <span class="highlight">Barbosa Lab</span> has officially started its activities at the
-        <span class="highlight">University of Missouri</span>, advancing research and innovation in
-        precision agriculture, remote sensing, robotics, and data-driven decision support systems.
-        This page will share lab updates, milestones, and news as our program continues to grow.
-      </p>
-    </div>
+<header>
+
+  <div class="news-banner">
+    <img src="images/FDREEC" alt="University of Missouri – FDREEC">
   </div>
+
+  <div class="news-text">
+    <h2>Barbosa Lab Launches at the University of Missouri</h2>
+    <p>
+      The <span class="highlight">Barbosa Lab</span> has officially started its activities at the
+      <span class="highlight">University of Missouri</span>, focusing on precision agriculture,
+      remote sensing, robotics, and data-driven decision support systems.
+      This page will share lab updates, milestones, and news as our program continues to grow.
+    </p>
+  </div>
+
 </header>
+
 
 
 
