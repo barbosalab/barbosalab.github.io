@@ -398,6 +398,82 @@
 
 
 
+    
+    /* ================= PROJECTS PAGE ================= */
+    
+    /* Section wrapper */
+    .project-section {
+      margin-bottom: 80px;
+    }
+    
+    /* Intro block */
+    .project-intro {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .project-intro img {
+      max-width: 180px;
+      margin: 20px auto 0;
+      display: block;
+    }
+    
+    .project-intro p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #e0e0e0;
+    }
+    
+    /* Tools grid */
+    .project-tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+    
+    .tool-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 26px 22px;
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    
+    .tool-card img {
+      height: 90px;
+      margin-bottom: 18px;
+    }
+    
+    .tool-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #FDB719;
+    }
+    
+    .tool-card p {
+      font-size: 0.95rem;
+      color: #d0d0d0;
+      line-height: 1.6;
+    }
+
+
+
+
+
+
+
+
+
+    
+
   </style>
 </head>
 
@@ -440,7 +516,8 @@
   
 <!-- HEADER -->
 <header>
-  <h1>Coming soon</h1>
+  <h1>Projects</h1>
+  <p>Research and innovation aligned with global sustainability goals</p>
 </header>
 
 
@@ -448,22 +525,88 @@
 
 
 
-  
 
+  
 <main>
 
+  <!-- ===== SDGs INTRO ===== -->
+  <section class="project-section project-intro">
+    <p>
+      The main idea of the <strong>Barbosa Lab</strong> is to develop interdisciplinary research
+      projects that support the <strong>United Nations Sustainable Development Goals (SDGs)</strong>,
+      fostering sustainable, resilient, and technology-driven agricultural systems.
+    </p>
 
+    <img src="images/SDG.jpeg" alt="United Nations Sustainable Development Goals">
+  </section>
 
+  <!-- ===== PRECISION AGRICULTURE FRAMEWORK ===== -->
+  <section class="project-section project-intro">
+    <p>
+      Our research program is grounded in the development and application of advanced tools
+      for <strong>precision agriculture practices</strong>, integrating sensing technologies,
+      automation, analytics, and decision-making frameworks to enhance crop management,
+      productivity, and environmental stewardship.
+    </p>
+  </section>
 
+  <!-- ===== TOOLS GRID ===== -->
+  <section class="project-section">
+    <div class="project-tools">
 
+      <!-- Remote Sensing -->
+      <div class="tool-card">
+        <img src="images/rs.jpeg" alt="Remote Sensing">
+        <h3>Remote Sensing</h3>
+        <p>
+          Use of diverse sensing platforms—including drones (UAVs), satellites, and handheld
+          sensors—for crop monitoring and spatial analysis. Applications include multispectral
+          mapping, vegetation indices, stress detection, and field variability assessment.
+        </p>
+      </div>
 
+      <!-- Robotics -->
+      <div class="tool-card">
+        <img src="images/robotics.jpeg" alt="Agricultural Robotics">
+        <h3>Robotics</h3>
+        <p>
+          Development and implementation of robotic systems for agricultural applications,
+          including automated data collection, crop monitoring, and site-specific crop
+          management operations.
+        </p>
+      </div>
 
+      <!-- Artificial Intelligence -->
+      <div class="tool-card">
+        <img src="images/ai.jpeg" alt="Artificial Intelligence">
+        <h3>Artificial Intelligence</h3>
+        <p>
+          Application of artificial intelligence and machine learning techniques for data
+          analysis, pattern recognition, and the development of predictive models supporting
+          yield estimation, crop quality assessment, and management decisions.
+        </p>
+      </div>
+
+      <!-- Decision Support Systems -->
+      <div class="tool-card">
+        <img src="images/dss.jpeg" alt="Decision Support Systems">
+        <h3>Decision Support Systems</h3>
+        <p>
+          Design of intuitive, user-friendly decision support systems (DSSs) that enable
+          stakeholders to visualize complex datasets and make informed, timely, and
+          data-driven management decisions.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
 
 
 
 
   
-</main>
 
 
 <!-- FOOTER -->
