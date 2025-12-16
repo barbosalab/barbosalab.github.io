@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Barbosa Lab — Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <!-- Favicons -->
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="shortcut icon" href="images/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+
+  <!-- Safari pinned tab icon (THIS IS THE KEY) -->
+  <link rel="mask-icon" href="images/logo_white.svg">
+
+  <!-- Optional but recommended -->
+  <meta name="theme-color" content="#000000">
+</head>
+
+
+
+
+  <style>
+        /* === Global animated gradient background === */
+    body {
+      background: #0b1e22; /* fallback */
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Gradient layer */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    
+      background: linear-gradient(
+        135deg,
+        #0a161a 0%,   /* deep blue */
+        #0a1a17 20%,  /* teal */
+        #1a150a 35%,  /* brown */
+        #1a150a 55%,  /* brown */
+        #0e0a1a 70%,  /* warm amber */
+        #0a161a 100%  /* back to blue */
+      );
+    
+      background-size: 400% 400%;
+      animation: gradientShiftFast 15s ease-in-out infinite;
+    }
+    
+    /* Faster, smooth transition */
+    @keyframes gradientShiftFast {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+
+    
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #0f0f0f;
+      color: #ffffff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      padding-top: 64px; /* space for fixed nav */
+      overflow-x: hidden;
+    }
+
+    /* ================= NAV ================= */
+    .topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      z-index: 10003; /* VERY IMPORTANT */
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+    }
+
+    /* Brand */
+    .brand a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand img {
+      height: 36px;
+    }
+
+    /* Desktop menu */
+    .menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 18px;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .menu a:hover {
+      color: #FDB719;
+      border-color: #FDB719;
+    }
+
+    /* Toggle button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-toggle:hover {
+      color: #FDB719;
+    }
+
+    /* ================= MOBILE ================= */
+    @media (max-width: 768px) {
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .menu {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        bottom: 0;
+        width: 78%;
+        max-width: 360px;
+        background: rgba(0,0,0,0.92);
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 40px 24px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 10002; /* BELOW NAV, ABOVE PAGE */
+      }
+
+      .topnav.open .menu {
+        transform: translateX(0);
+      }
+
+      .menu a {
+        font-size: 1.2rem;
+        font-weight: 600;
+        border: none;
+      }
+
+      /* Backdrop */
+      .nav-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.92);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 10001;
+      }
+
+      .topnav.open + .nav-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    /* ================= HEADER ================= */
+    header {
+      max-width: 960px;
+      margin: 40px auto 20px;
+      padding: 0 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: #FDB719;
+      font-size: 1.05rem;
+    }
+
+    /* ================= CONTENT ================= */
+    main {
+      max-width: 960px;
+      margin: 0 auto 80px;
+      padding: 0 18px;
+    }
+
+    .year {
+      margin-top: 36px;
+    }
+
+    .year h2 {
+      border-left: 4px solid #FDB719;
+      padding-left: 10px;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+
+    .pub {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .pub-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .pub-authors {
+      color: #d0d0d0;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .pub-journal {
+      color: #bfbfbf;
+      font-size: 0.9rem;
+    }
+
+    .pub a {
+      color: #FDB719;
+      text-decoration: none;
+    }
+
+    .pub a:hover {
+      text-decoration: underline;
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding: 24px 18px;
+      text-align: center;
+      color: #bfbfbf;
+    }
+
+        /* ===== Footer social icons (same as index) ===== */
+    #footer .icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      margin-bottom: 8px;
+      list-style: none;
+      padding: 0;
+    }
+
+    #footer .icons a {
+      color: #fff;
+      font-size: 1.3em;
+      transition: color 0.3s ease;
+    }
+    #footer .icons a:hover {
+      color: #FFD700;
+    }
+    
+    footer .copyright {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+
+
+/* === Header layout, spacing, and font styling === */
+    #header {
+      text-align: center;
+      margin-top: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Big logo */
+    #header img.header-logo {
+      display: block;
+      width: auto;
+      height: 300px !important;
+      max-height: none !important;
+      max-width: 90vw;
+    }
+
+    @media (max-width: 991.98px) {
+      #header img.header-logo {
+        height: 240px !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #header img.header-logo {
+        height: 200px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #header img.header-logo {
+        height: 200px !important;
+      }
+    }
+
+    #header h1 {
+      margin-bottom: 0.3em;
+      color: #ffffff;
+      font-size: 2.5em;
+      font-weight: 700;
+    }
+
+    #header p {
+      margin: 0.15em 0 !important;
+      line-height: 1.3 !important;
+      color: #FDB719 !important;
+      font-weight: 300;
+      font-size: 1.5em;
+    }
+
+    #header .subtitle-gold {
+      color: #FDB719 !important;
+      font-size: 1.7em;
+      font-weight: 400;
+      margin: 0.15em 0;
+      line-height: 1.3;
+    }
+
+    #header .subtitle-small {
+      color: #bfbfbf !important;
+      font-size: 1em;
+      font-weight: 400;
+      margin-top: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 768px) {
+      #header {
+        margin-top: 80px;
+      }
+      #header .header-logo {
+        height: 70px;
+        margin-bottom: 8px;
+      }
+      #header h1 {
+        font-size: 1.6em;
+      }
+      #header p {
+        font-size: 0.9em;
+      }
+    }
+
+
+
+  </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="nav-inner">
+    <div class="brand">
+      <a href="home.html">
+        <img src="images/logo.png" alt="Barbosa Lab Logo">
+        <span>Barbosa Lab</span>
+      </a>
+    </div>
+
+    <button class="menu-toggle" aria-expanded="false" aria-label="Open menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <ul class="menu" id="primary-menu">
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="opportunities.html">Opportunities</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="nav-backdrop"></div>
+
+
+
+
+
+
+
+  
+<!-- HEADER -->
+<header id="header">
+  <img src="images/logofront.png" alt="Barbosa Lab Logo" class="header-logo" />
+
+  <p class="subtitle-gold">
+    Integrating science, data, and technology to advance precision agriculture sustainably.
+  </p>
+
+  <p class="subtitle-small">
+    Remote Sensing | Artificial Intelligence | Agricultural Robotics | Drones | Ag Technologies
+  </p>
+</header>
+
+
+
+
+
+
+  
+
+<main>
+
+
+
+
+
+
+
+
+
+
+
+  
+</main>
+
+
+<!-- FOOTER -->
+<footer id="footer">
+  <ul class="icons">
+    <li>
+      <a href="https://twitter.com/barbosaresearch" target="_blank" aria-label="X">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.instagram.com/barbosaresearchlab" target="_blank" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/barbosaresearchlab" target="_blank" aria-label="Facebook">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="copyright">
+    <li>&copy; 2025 Barbosa Lab, University of Missouri. All rights reserved.</li>
+    <li>Website developed by Marcelo Barbosa.</li>
+  </ul>
+</footer>
+
+
+
+<!-- ================= JS ================= -->
+<script>
+(function () {
+  const nav = document.querySelector('.topnav');
+  const btn = document.querySelector('.menu-toggle');
+  const icon = btn.querySelector('i');
+  const backdrop = document.querySelector('.nav-backdrop');
+
+  function openMenu() {
+    nav.classList.add('open');
+    icon.classList.replace('fa-bars', 'fa-xmark');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    nav.classList.remove('open');
+    icon.classList.replace('fa-xmark', 'fa-bars');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', () => {
+    nav.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  backdrop.addEventListener('click', closeMenu);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      closeMenu();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
+
+
+
+
