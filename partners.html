@@ -405,8 +405,9 @@
     
     .partners-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
+      margin-top: 40px;
     }
     
     /* Tablets */
@@ -423,18 +424,19 @@
       }
     }
     
+    /* ===== White partner card ===== */
     .partner-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: #ffffff;
       border-radius: 14px;
-      padding: 30px 20px;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 30px 22px;
       text-align: center;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     
     .partner-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.35);
     }
     
     .partner-card img {
@@ -442,14 +444,16 @@
       max-width: 180px;
       margin-bottom: 16px;
       object-fit: contain;
+      filter: none; /* keep logos original */
     }
     
     .partner-card h3 {
       font-size: 1.05rem;
-      color: #FDB719;
+      font-weight: 600;
+      color: #111111;
       margin: 0;
     }
-    
+
     /* ===== Call to Action ===== */
     
     .partner-cta {
@@ -546,13 +550,13 @@
       <!-- Partner 1 -->
       <div class="partner-card">
         <img src="images/Partners/rsrg.png" alt="University of Missouri">
-        <h3>Precision Horticulture Lab - UGA</h3>
+        <h3>Rouverson Silva Research Group - Unesp</h3>
       </div>
 
       <!-- Partner 2 -->
       <div class="partner-card">
         <img src="images/Partners/ph.png" alt="USDA">
-        <h3>Rouverson Silva Research Group - Unesp</h3>
+        <h3>Precision Horticulture Lab - UGA</h3>
       </div>
 
     </div>
