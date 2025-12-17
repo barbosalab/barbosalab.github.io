@@ -432,6 +432,8 @@
       padding: 30px 22px;
       text-align: center;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: block;
+      text-decoration: none; /* remove underline */
     }
     
     .partner-card:hover {
@@ -548,16 +550,20 @@
     <div class="partners-grid">
 
       <!-- Partner 1 -->
-      <div class="partner-card">
-        <img src="images/Partners/rsrg.png" alt="University of Missouri">
-        <h3>Rouverson Silva Research Group - Unesp</h3>
-      </div>
+      <a href="https://www.rsrg.net.br"
+         class="partner-card"
+         target="_blank"
+         rel="noopener noreferrer">
+        <img src="images/Partners/rsrg.png" alt="Rouverson Silva Research Group">
+      </a>
 
       <!-- Partner 2 -->
-      <div class="partner-card">
-        <img src="images/Partners/ph.png" alt="USDA">
-        <h3>Precision Horticulture Lab - UGA</h3>
-      </div>
+      <a href="https://precisionhorticulture.uga.edu"
+         class="partner-card"
+         target="_blank"
+         rel="noopener noreferrer">
+        <img src="images/Partners/ph.png" alt="Precision Horticulture Lab">
+      </a>
 
     </div>
 
