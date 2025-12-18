@@ -337,6 +337,64 @@
       color: #000;
     }
 
+
+        /* ================= PUBLICATION CHOOSER ================= */
+    .pub-chooser {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+    
+    .chooser-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 30px 22px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    
+    .chooser-card:hover {
+      transform: translateY(-6px);
+      border-color: #FDB719;
+    }
+    
+    .chooser-card i {
+      font-size: 2.4rem;
+      color: #FDB719;
+      margin-bottom: 12px;
+    }
+    
+    .chooser-card h3 {
+      margin: 8px 0;
+    }
+    
+    .chooser-card p {
+      color: #cfcfcf;
+      font-size: 0.95rem;
+    }
+    
+    /* ================= BACK BUTTON ================= */
+    .back-btn {
+      background: none;
+      border: none;
+      color: #FDB719;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    
+    .back-btn i {
+      margin-right: 6px;
+    }
+    
+    /* ================= VISIBILITY ================= */
+    .hidden {
+      display: none;
+    }
+
   </style>
 
 
@@ -382,8 +440,29 @@
 </header>
 
 <main>
+    <!-- PUBLICATION TYPE CHOOSER -->
+  <section id="pub-chooser" class="pub-chooser">
+    <div class="chooser-card" data-target="peer">
+      <i class="fa-solid fa-file-lines"></i>
+      <h3>Peer-reviewed Papers</h3>
+      <p>Scientific journal articles</p>
+    </div>
   
-  <!-- FILTER BAR -->
+    <div class="chooser-card" data-target="extension">
+      <i class="fa-solid fa-seedling"></i>
+      <h3>Extension Publications</h3>
+      <p>Extension bulletins, reports, and outreach materials</p>
+    </div>
+  </section>
+
+  <section id="peer-publications" class="pub-group hidden">
+
+  <!-- BACK BUTTON -->
+  <button class="back-btn">
+    <i class="fa-solid fa-arrow-left"></i> Back to Publications
+  </button>
+
+    <!-- FILTER BAR -->
   <div class="filters">
     <select id="filter-year">
       <option value="all">All Years</option>
@@ -629,6 +708,30 @@
     </div>
   </section>
 
+  </section>
+
+  <section id="extension-publications" class="pub-group hidden">
+  
+    <button class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Back to Publications
+    </button>
+  
+  <section class="year">
+     <h2>2025</h2>
+  
+    <div class="pub">
+      <div class="pub-title">A Remote Vision on Sugarcane: Toward the Sugar Content Estimation</div>
+      <div class="pub-authors">Barbosa Júnior, M. R.; Orgeron, A. I.; Gravois, K.; Bufon, V.; Chevez, D. D.; Bringel, A.; Setiyono, T.; Shiratisuchi, L. S.;</div>
+      <div class="pub-journal"><em>LSU AgCenter</em> — <a href="https://www.lsuagcenter.com/~/media/system/b/4/5/7/b457f4d28e2b7dd37de4d72d16a37edf/11%20precision%20agriculture%20section%202022%20updatedpdf.pdf" target="_blank">Link</a></div>
+    </div>
+  
+    </section>
+  
+  </section>
+
+
+  
+
 </main>
 
 
@@ -736,6 +839,35 @@
 
   yearFilter.addEventListener('change', applyFilters);
   areaFilter.addEventListener('change', applyFilters);
+})();
+</script>
+
+  <script>
+(function () {
+  const chooser = document.getElementById('pub-chooser');
+  const peer = document.getElementById('peer-publications');
+  const extension = document.getElementById('extension-publications');
+
+  document.querySelectorAll('.chooser-card').forEach(card => {
+    card.addEventListener('click', () => {
+      chooser.classList.add('hidden');
+
+      if (card.dataset.target === 'peer') {
+        peer.classList.remove('hidden');
+      } else {
+        extension.classList.remove('hidden');
+      }
+    });
+  });
+
+  document.querySelectorAll('.back-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      peer.classList.add('hidden');
+      extension.classList.add('hidden');
+      chooser.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
 })();
 </script>
 
