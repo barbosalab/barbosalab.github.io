@@ -368,7 +368,7 @@
       }
     }
 
-          /* Alternate layout: photo on the right */
+      /* Alternate layout: photo on the right */
       .member.reverse {
         grid-template-columns: 1fr 220px;
       }
@@ -392,7 +392,29 @@
           order: unset;
         }
       }
-        
+    
+      /* ================= ACADEMIC LINKS ================= */
+      .academic-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 26px;
+        margin: 40px 0 70px;
+        flex-wrap: wrap;
+      }
+      
+      .academic-links a {
+        color: #ffffff;
+        font-size: 1.8rem;
+        transition: transform 0.25s ease, color 0.25s ease;
+      }
+      
+      .academic-links a:hover {
+        color: #FDB719;
+        transform: translateY(-4px);
+      }
+
+    
 
       /* ================= MISSION • VISION • VALUES ================= */
       
@@ -515,6 +537,35 @@
       </div>
     </div>
   
+  </section>
+
+
+  
+  <!-- ================= ACADEMIC LINKS ================= -->
+  <section class="academic-links">
+    <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" aria-label="Google Scholar">
+      <i class="fa-brands fa-google-scholar"></i>
+    </a>
+  
+    <a href="https://www.scopus.com/authid/detail.uri?authorId=YOUR_ID" target="_blank" aria-label="Scopus">
+      <i class="fa-solid fa-database"></i>
+    </a>
+  
+    <a href="https://www.webofscience.com/wos/author/record/YOUR_ID" target="_blank" aria-label="Web of Science">
+      <i class="fa-solid fa-globe"></i>
+    </a>
+  
+    <a href="https://orcid.org/YOUR-ORCID" target="_blank" aria-label="ORCID">
+      <i class="fa-brands fa-orcid"></i>
+    </a>
+  
+    <a href="https://www.researchgate.net/profile/YOUR_NAME" target="_blank" aria-label="ResearchGate">
+      <i class="fa-brands fa-researchgate"></i>
+    </a>
+  
+    <a href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" aria-label="LinkedIn">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
   </section>
 
 
