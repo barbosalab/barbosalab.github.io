@@ -407,32 +407,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #ffffff;
-        transition: transform 0.25s ease, color 0.25s ease;
+        text-decoration: none;       /* 🔑 prevents underline artifacts */
       }
       
-      /* Font Awesome icons */
-      .academic-links i {
-        font-size: 1.8rem;
-      }
-      
-      /* Custom logos (SVG/PNG) */
       .academic-links img {
-        height: 28px;   /* matches FA icon visual size */
+        display: block;              /* 🔑 FIXES the line */
+        height: 28px;
         width: auto;
-        filter: brightness(0) invert(1); /* makes PNG logos white */
-        transition: filter 0.25s ease;
+        filter: brightness(0) invert(1);
+        transition: transform 0.25s ease, filter 0.25s ease;
       }
       
       /* Hover */
-      .academic-links a:hover {
-        color: #FDB719;
-        transform: translateY(-4px);
-      }
-      
       .academic-links a:hover img {
+        transform: translateY(-4px);
         filter: brightness(0) invert(1) sepia(1) saturate(6) hue-rotate(10deg);
       }
+
 
 
     
