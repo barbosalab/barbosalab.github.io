@@ -404,15 +404,36 @@
       }
       
       .academic-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #ffffff;
-        font-size: 1.8rem;
         transition: transform 0.25s ease, color 0.25s ease;
       }
       
+      /* Font Awesome icons */
+      .academic-links i {
+        font-size: 1.8rem;
+      }
+      
+      /* Custom logos (SVG/PNG) */
+      .academic-links img {
+        height: 28px;   /* matches FA icon visual size */
+        width: auto;
+        filter: brightness(0) invert(1); /* makes PNG logos white */
+        transition: filter 0.25s ease;
+      }
+      
+      /* Hover */
       .academic-links a:hover {
         color: #FDB719;
         transform: translateY(-4px);
       }
+      
+      .academic-links a:hover img {
+        filter: brightness(0) invert(1) sepia(1) saturate(6) hue-rotate(10deg);
+      }
+
 
     
 
@@ -543,27 +564,27 @@
   
   <!-- ================= ACADEMIC LINKS ================= -->
   <section class="academic-links">
-    <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" aria-label="Google Scholar">
+    <a href="https://scholar.google.com/citations?user=6KY7jLkAAAAJ&hl=en&oi=ao" target="_blank" aria-label="Google Scholar">
       <i class="fa-brands fa-google-scholar"></i>
     </a>
   
-    <a href="https://www.scopus.com/authid/detail.uri?authorId=YOUR_ID" target="_blank" aria-label="Scopus">
-      <i class="fa-solid fa-database"></i>
+    <a href="https://www.scopus.com/authid/detail.uri?authorId=57327619900" target="_blank" aria-label="Scopus">
+      <i class="images/icons/scopus.svg"></i>
     </a>
   
-    <a href="https://www.webofscience.com/wos/author/record/YOUR_ID" target="_blank" aria-label="Web of Science">
-      <i class="fa-solid fa-globe"></i>
+    <a href="https://www.webofscience.com/wos/author/record/ABG-7234-2021" target="_blank" aria-label="Web of Science">
+      <i class="images/icons/wos.svg"></i>
     </a>
   
-    <a href="https://orcid.org/YOUR-ORCID" target="_blank" aria-label="ORCID">
+    <a href="https://orcid.org/0000-0002-7207-2156" target="_blank" aria-label="ORCID">
       <i class="fa-brands fa-orcid"></i>
     </a>
   
-    <a href="https://www.researchgate.net/profile/YOUR_NAME" target="_blank" aria-label="ResearchGate">
+    <a href="https://www.researchgate.net/profile/Marcelo-Barbosa-Junior" target="_blank" aria-label="ResearchGate">
       <i class="fa-brands fa-researchgate"></i>
     </a>
   
-    <a href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" aria-label="LinkedIn">
+    <a href="https://www.linkedin.com/in/marcelorbarbosajr/" target="_blank" aria-label="LinkedIn">
       <i class="fa-brands fa-linkedin"></i>
     </a>
   </section>
