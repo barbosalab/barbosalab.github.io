@@ -399,110 +399,102 @@
     
 
     
-    /* ================= NEWS CAROUSEL ================= */
-    .news-hero {
-      position: relative;
-      max-width: 960px;
-      margin: 40px auto 60px;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    
-    .news-carousel {
-      position: relative;
-      width: 100%;
-      height: 380px;
-    }
-    
-    .news-carousel img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      animation: carouselFade 18s infinite;
-    }
-    
-    .news-carousel img:nth-child(1) { animation-delay: 0s; }
-    .news-carousel img:nth-child(2) { animation-delay: 6s; }
-    .news-carousel img:nth-child(3) { animation-delay: 12s; }
-    
-    @keyframes carouselFade {
-      0%   { opacity: 0; }
-      10%  { opacity: 1; }
-      30%  { opacity: 1; }
-      40%  { opacity: 0; }
-      100% { opacity: 0; }
-    }
-    
-    /* Dark overlay for readability */
-    .news-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.65),
-        rgba(0,0,0,0.55),
-        rgba(0,0,0,0.75)
-      );
-      z-index: 1;
-    }
-    
-    /* Content */
-    .news-content {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      padding: 24px;
-    }
-    
-    .news-date {
-      color: #FDB719;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-    }
-    
-    .news-content h2 {
-      font-size: 2rem;
-      margin-bottom: 12px;
-      color: #ffffff;
-    }
-    
-    .news-content p {
-      font-size: 1.05rem;
-      color: #e0e0e0;
-      max-width: 760px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-    
-    .news-highlight {
-      color: #FDB719;
-      font-weight: 600;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .news-carousel {
-        height: 300px;
-      }
-    
-      .news-content h2 {
-        font-size: 1.6rem;
-      }
-    
-      .news-content p {
-        font-size: 0.95rem;
-      }
-    }
+/* ================= NEWS HERO (Research-card style) ================= */
+.news-hero {
+  max-width: 960px;
+  margin: 40px auto 60px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+}
+
+/* Image area sits on TOP like Research cards */
+.news-carousel {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+}
+
+/* Cross-fade images */
+.news-carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: carouselFade 18s infinite;
+  z-index: 0;
+}
+
+.news-carousel img:nth-child(1) { animation-delay: 0s; }
+.news-carousel img:nth-child(2) { animation-delay: 6s; }
+.news-carousel img:nth-child(3) { animation-delay: 12s; }
+
+@keyframes carouselFade {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  30%  { opacity: 1; }
+  40%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Optional: subtle gradient ONLY over image area (not another "layer" block) */
+.news-carousel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.35)
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Text area BELOW the image (like Research cards) */
+.news-content {
+  padding: 22px 22px 26px;
+  text-align: center;
+}
+
+.news-date {
+  color: #FDB719;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.news-content h2 {
+  font-size: 1.9rem;
+  margin: 0 0 12px;
+  color: #ffffff;
+}
+
+.news-content p {
+  font-size: 1.05rem;
+  color: #e0e0e0;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.news-highlight {
+  color: #FDB719;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .news-carousel { height: 300px; }
+  .news-content h2 { font-size: 1.5rem; }
+  .news-content p { font-size: 0.95rem; }
+}
+
 
 
 
@@ -556,32 +548,27 @@
   <h1>News & Updates</h1>
 </header>
 
-<header>
-  <div class="news-hero">
-
-    <div class="news-carousel">
-      <img src="images/News/FDREEC1.jpeg" alt="FDREEC Field Research">
-      <img src="images/News/FDREEC2.jpeg" alt="FDREEC Research Activities">
-      <img src="images/News/FDREEC3.jpeg" alt="FDREEC Facilities">
-
-      <div class="news-overlay"></div>
-    </div>
-
-    <div class="news-content">
-      <div class="news-date">January 2026</div>
-
-      <h2>Barbosa Lab Launches at the University of Missouri</h2>
-
-      <p>
-        The <span class="news-highlight">Barbosa Lab</span> has officially started its activities at the
-        <span class="news-highlight">University of Missouri-FDREEC</span>, focusing on precision agriculture,
-        remote sensing, robotics, and AI-driven decision support systems. This page will highlight
-        lab milestones, research developments, and outreach efforts as the program grows.
-      </p>
-    </div>
-
+<section class="news-hero">
+  <div class="news-carousel">
+    <img src="images/News/FDREEC1.jpeg" alt="FDREEC Field Research">
+    <img src="images/News/FDREEC2.jpeg" alt="FDREEC Research Activities">
+    <img src="images/News/FDREEC3.jpeg" alt="FDREEC Facilities">
   </div>
-</header>
+
+  <div class="news-content">
+    <div class="news-date">January 2026</div>
+
+    <h2>Barbosa Lab Launches at the University of Missouri</h2>
+
+    <p>
+      The <span class="news-highlight">Barbosa Lab</span> has officially started its activities at the
+      <span class="news-highlight">University of Missouri-FDREEC</span>, focusing on precision agriculture,
+      remote sensing, robotics, and AI-driven decision support systems. This page will highlight
+      lab milestones, research developments, and outreach efforts as the program grows.
+    </p>
+  </div>
+</section>
+
 
 
 
