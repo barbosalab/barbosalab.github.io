@@ -393,27 +393,44 @@
         }
       }
         
-      .member-links {
-        margin-top: 10px;
+      .member-photo {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 6px;
+      }
+      
+      .member-links {
+        margin-top: 10px;
+        width: 100%;
+        max-width: 220px; /* SAME as photo */
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
       }
       
       .member-links a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 8px 6px;
         font-size: 0.85rem;
+        font-weight: 600;
         color: #FDB719;
         text-decoration: none;
-        font-weight: 600;
-        border-bottom: 1px solid transparent;
+      
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 6px;
+      
         transition: all 0.25s ease;
       }
       
       .member-links a:hover {
+        background: rgba(253,183,25,0.15);
         color: #ffffff;
         border-color: #FDB719;
       }
+
 
 
 
