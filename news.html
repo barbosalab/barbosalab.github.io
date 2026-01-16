@@ -513,9 +513,9 @@
         grid-template-columns: 1fr;
       }
     }
-
     
-    /* ================= NEWS CARD (same style as your hero) ================= */
+        
+    /* ================= NEWS CARD ================= */
     .news-card {
       border-radius: 16px;
       overflow: hidden;
@@ -523,11 +523,10 @@
       background: rgba(255,255,255,0.05);
     }
     
-    /* Image area sits on TOP like Research cards */
     .news-card .news-carousel {
       position: relative;
       width: 100%;
-      height: 240px;           /* smaller so 3 fit nicely */
+      height: 240px;
       overflow: hidden;
     }
     
@@ -535,14 +534,12 @@
       .news-card .news-carousel { height: 260px; }
     }
     
-    /* Cross-fade images (scoped per card) */
     .news-card .news-carousel img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-    
       opacity: 0;
       animation: carouselFade 18s infinite;
       z-index: 0;
@@ -552,78 +549,45 @@
     .news-card .news-carousel img:nth-child(2) { animation-delay: 6s; }
     .news-card .news-carousel img:nth-child(3) { animation-delay: 12s; }
     
-    @keyframes carouselFade {
-      0%   { opacity: 0; }
-      10%  { opacity: 1; }
-      30%  { opacity: 1; }
-      40%  { opacity: 0; }
-      100% { opacity: 0; }
-    }
-    
-    /* Subtle overlay */
     .news-card .news-carousel::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.15),
-        rgba(0,0,0,0.35)
-      );
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
       z-index: 1;
       pointer-events: none;
     }
     
-    /* Text area BELOW the image */
-    .news-card .news-content h2 {
-      font-size: 1.5rem;     /* smaller, cleaner */
-      margin: 0 0 8px;
-      color: #ffffff;
-      line-height: 1.3;
-      font-weight: 600;      /* slightly lighter than hero titles */
+    .news-card .news-content {
+      padding: 22px 22px 26px;
+      text-align: center;
     }
-  
-    .news-card .news-content p {
-    font-size: 0.95rem;   /* smaller than title */
-    color: #d0d0d0;       /* same as Research cards */
-    line-height: 1.6;
-    margin: 0 auto;
-    }
-  
+    
     .news-card .news-date {
       color: #FDB719;
       font-size: 0.85rem;
       letter-spacing: 1px;
       margin-bottom: 8px;
-      text
+      text-transform: uppercase;
+    }
     
-    /* ================= NEWS BUTTON ================= */
-    .news-button {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 8px 14px;
-    
-      font-size: 0.85rem;
+    .news-card .news-content h2 {
+      font-size: 1.5rem;
+      margin: 0 0 8px;
+      color: #ffffff;
+      line-height: 1.3;
       font-weight: 600;
-      text-decoration: none;
-    
-      color: #0f0f0f;          /* dark text for contrast */
-      background-color: #FDB719; /* GOLD */
-      border-radius: 999px;
-    
-      transition: transform 0.2s ease,
-                  box-shadow 0.2s ease,
-                  background-color 0.2s ease;
     }
     
-    .news-button:hover {
-      background-color: #ffcc3d; /* lighter gold on hover */
-      transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+    .news-card .news-content p {
+      font-size: 0.95rem;
+      color: #d0d0d0;
+      line-height: 1.6;
+      margin: 0 auto;
     }
-
-      /* ================= NEWS BUTTON (FORCE GOLD) ================= */
-    .news-content .news-button {
+    
+    /* ================= NEWS BUTTON (GOLD) ================= */
+    .news-card .news-button {
       display: inline-block;
       margin-top: 14px;
       padding: 8px 18px;
@@ -631,20 +595,19 @@
       font-size: 0.85rem;
       font-weight: 600;
     
-      color: #0f0f0f !important;     /* force text color */
-      background-color: #FDB719 !important; /* GOLD */
-      text-decoration: none !important;
+      color: #0f0f0f;
+      background-color: #FDB719;
+      text-decoration: none;
     
       border-radius: 999px;
-      border: none;
     
       transition: background-color 0.2s ease,
                   transform 0.2s ease,
                   box-shadow 0.2s ease;
     }
     
-    .news-content .news-button:hover {
-      background-color: #ffcc3d !important;
+    .news-card .news-button:hover {
+      background-color: #ffcc3d;
       transform: translateY(-1px);
       box-shadow: 0 4px 10px rgba(0,0,0,0.35);
     }
