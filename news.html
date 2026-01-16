@@ -497,29 +497,23 @@
     
     
     /* ================= NEWS GRID ================= */
-  .news-grid {
-    max-width: 960px;
-    margin: 40px auto 60px;
-    padding: 0 18px;
-  
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-  
-  /* 2 columns */
-  @media (max-width: 991px) {
     .news-grid {
+      max-width: 960px;
+      margin: 40px auto 60px;
+      padding: 0 18px;
+    
+      display: grid;
       grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
     }
-  }
-  
-  /* 1 column */
-  @media (max-width: 640px) {
-    .news-grid {
-      grid-template-columns: 1fr;
+    
+    /* 1 column on smaller screens */
+    @media (max-width: 768px) {
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
     }
-  }
+
   
   /* ================= NEWS CARD (same style as your hero) ================= */
   .news-card {
