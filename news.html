@@ -597,7 +597,8 @@
       margin-bottom: 8px;
       text
     
-      .news-button {
+    /* ================= NEWS BUTTON ================= */
+    .news-button {
       display: inline-block;
       margin-top: 12px;
       padding: 8px 14px;
@@ -606,19 +607,21 @@
       font-weight: 600;
       text-decoration: none;
     
-      color: #ffffff;
-      background-color: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.25);
+      color: #0f0f0f;          /* dark text for contrast */
+      background-color: #FDB719; /* GOLD */
       border-radius: 999px;
     
-      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease,
+                  box-shadow 0.2s ease,
+                  background-color 0.2s ease;
     }
     
     .news-button:hover {
-      background-color: rgba(255,255,255,0.15);
+      background-color: #ffcc3d; /* lighter gold on hover */
       transform: translateY(-1px);
       box-shadow: 0 4px 10px rgba(0,0,0,0.35);
     }
+
   
     
         
