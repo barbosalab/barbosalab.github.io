@@ -397,6 +397,120 @@
     }
 
 
+    
+        /* ================= HERO WITH MAP ================= */
+    .hero {
+      max-width: 960px;
+      margin: 100px auto 24px; /* below fixed nav */
+      padding: 0 18px;
+    }
+    
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    
+    .hero-left {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .hero-left img.header-logo {
+      height: 240px !important;   /* adjust as you like */
+      width: auto;
+      max-width: 100%;
+      margin: 0 auto 10px;
+    }
+    
+    .hero-left .subtitle-gold {
+      color: #FDB719 !important;
+      font-size: 1.35em;
+      font-weight: 400;
+      margin: 8px 0 6px;
+      line-height: 1.3;
+    }
+    
+    .hero-left .subtitle-small {
+      color: #bfbfbf !important;
+      font-size: 1em;
+      margin: 0;
+      line-height: 1.4;
+    }
+    
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .map-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.25);
+      aspect-ratio: 16 / 10; /* keeps a nice map shape */
+    }
+    
+    .map-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    .center-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+    
+    .center-desc {
+      color: #d0d0d0;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+    
+    .center-meta {
+      color: #bfbfbf;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    
+    .center-meta a {
+      color: #FDB719;
+      text-decoration: none;
+    }
+    .center-meta a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Mobile */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        margin-top: 84px;
+      }
+      .hero-left img.header-logo {
+        height: 200px !important;
+      }
+    }
+
 
   </style>
 </head>
@@ -442,15 +556,51 @@
   
 <!-- HEADER -->
 <header id="header">
-  <img src="images/Main/logofront.png" alt="Barbosa Lab Logo" class="header-logo" />
+  <section class="hero">
+    <div class="hero-grid">
+  
+      <!-- LEFT: Logo + tagline -->
+      <div class="hero-card hero-left">
+        <img src="images/Main/logofront.png" alt="Barbosa Lab Logo" class="header-logo" />
+  
+        <p class="subtitle-gold">
+          Integrating science, data, and technology to advance precision agriculture sustainably.
+        </p>
+  
+        <p class="subtitle-small">
+          Remote Sensing | Artificial Intelligence | Agricultural Robotics | Drones | Ag Technologies
+        </p>
+      </div>
+  
+      <!-- RIGHT: Map + center description -->
+      <div class="hero-card hero-right">
+        <div class="map-wrap">
+          <!-- OPTION A (recommended): Google Maps embed (paste your embed src below) -->
+          <iframe
+            src="https://www.google.com/maps/place/T.E.+“Jake”+Fisher+Delta+Research,+Extension+and+Education+Center/@36.4142989,-89.7004963,517m/data=!3m1!1e3!4m6!3m5!1s0x887892ca9d978d73:0x2264dbf1d2e0df49!8m2!3d36.4147057!4d-89.7011866!16s%2Fg%2F1q64qdp8s?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
+  
+        <div class="center-title">Your Center / Building Name</div>
+  
+        <p class="center-desc">
+          Write 2–4 lines describing the center (mission, facilities, collaborators, what happens there),
+          and how Barbosa Lab fits into it (e.g., precision horticulture, sensing platforms, analytics, extension support).
+        </p>
+  
+        <p class="center-meta">
+          <i class="fa-solid fa-location-dot"></i>
+          1234 Address St, Columbia, MO 65211 &nbsp;·&nbsp;
+          <a href="PASTE_CENTER_WEBSITE_LINK_HERE" target="_blank" rel="noopener">Center website</a>
+        </p>
+      </div>
+  
+    </div>
+  </section>
 
-  <p class="subtitle-gold">
-    Integrating science, data, and technology to advance precision agriculture sustainably.
-  </p>
-
-  <p class="subtitle-small">
-    Remote Sensing | Artificial Intelligence | Agricultural Robotics | Drones | Ag Technologies
-  </p>
 </header>
 
 
