@@ -686,6 +686,9 @@
       background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.0));
       z-index: 2;
     }
+
+    /* Hide overlay text on the event images */
+    .event-slide .event-overlay { display: none !important; }
     
     .event-slide .event-overlay .date{
       color:#FDB719;
@@ -706,15 +709,14 @@
     .event-slide.is-side{
       opacity: 0.45;
       transform: scale(0.92);
-      transition: opacity .25s ease, transform .25s ease;
+      transition: opacity .6s ease, transform .6s ease;
     }
     
-    /* Center slide larger */
     .event-slide.is-center{
       opacity: 1;
       transform: scale(1.02);
       box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-      transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease;
+      transition: opacity .6s ease, transform .6s ease, box-shadow .6s ease;
     }
     
     /* Hover affordance (only for center on desktop) */
@@ -1147,7 +1149,7 @@
 
   let index = 0;
   let timer = null;
-  const intervalMs = 4500;
+  const intervalMs = 7000;
 
   function mod(n, m){ return ((n % m) + m) % m; }
 
@@ -1171,17 +1173,12 @@
     a.href = ev.url;
     a.target = "_blank";
     a.rel = "noopener";
-
+  
     const img = document.createElement("img");
     img.src = ev.img;
     img.alt = `${ev.title} — ${ev.date}`;
-
-    const overlay = document.createElement("div");
-    overlay.className = "event-overlay";
-    overlay.innerHTML = `<div class="date">${ev.date}</div><div class="title">${ev.title}</div>`;
-
+  
     a.appendChild(img);
-    a.appendChild(overlay);
     return a;
   }
 
