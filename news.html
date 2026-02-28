@@ -615,7 +615,7 @@
     }
 
 
-    /* ================= UPCOMING EVENTS (3-up carousel) ================= */
+    /* ================= UPCOMING EVENTS (smooth 3-up carousel) ================= */
     .events-hero{
       max-width: 960px;
       margin: 28px auto 28px;
@@ -647,16 +647,24 @@
       padding: 18px 18px 44px;
     }
     
-    /* Track holds 3 visible "cards" */
-    .events-track{
-      display: grid;
-      grid-template-columns: 1fr 1.35fr 1fr;
-      gap: 14px;
-      align-items: center;
+    /* viewport masks the sliding track */
+    .events-viewport{
+      overflow: hidden;
+      width: 100%;
     }
     
-    /* A slide is a link wrapping the image */
+    /* horizontal track that moves smoothly */
+    .events-track{
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      will-change: transform;
+      transition: transform 900ms cubic-bezier(.22,.8,.22,1);
+    }
+    
+    /* each slide card */
     .event-slide{
+      flex: 0 0 32%;
       display:block;
       position: relative;
       border-radius: 14px;
@@ -665,6 +673,9 @@
       background: rgba(0,0,0,0.25);
       cursor: pointer;
       transform: translateZ(0);
+      opacity: .45;
+      transform: scale(.92);
+      transition: transform 450ms ease, opacity 450ms ease, box-shadow 450ms ease;
     }
     
     /* Image */
@@ -676,13 +687,13 @@
       filter: saturate(1.05);
     }
     
-    /* Overlay text ON image (optional but nice) */
+    /* Overlay on image */
     .event-slide .event-overlay{
       position:absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 10px 10px 10px;
+      padding: 10px;
       background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.0));
       z-index: 2;
     }
@@ -702,22 +713,13 @@
       line-height: 1.2;
     }
     
-    /* Side slides smaller + transparent */
-    .event-slide.is-side{
-      opacity: 0.45;
-      transform: scale(0.92);
-      transition: opacity .25s ease, transform .25s ease;
-    }
-    
-    /* Center slide larger */
+    /* Center highlight */
     .event-slide.is-center{
       opacity: 1;
       transform: scale(1.02);
       box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-      transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease;
     }
     
-    /* Hover affordance (only for center on desktop) */
     @media (hover:hover){
       .event-slide.is-center:hover{
         transform: scale(1.04);
@@ -776,7 +778,7 @@
       width: 18px;
     }
     
-    /* Meta below carousel (explicit date + name + link) */
+    /* Meta below */
     .events-meta{
       margin-top: 12px;
       text-align:center;
@@ -814,19 +816,15 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.35);
     }
     
-    /* Mobile: show 1 big slide */
+    /* Mobile: one slide */
     @media (max-width: 768px){
-      .events-track{
-        grid-template-columns: 1fr;
-      }
-      .event-slide img{
-        height: 240px;
-      }
-      .event-slide.is-side{
-        display:none;
-      }
+      .event-slide{ flex-basis: 100%; }
+      .event-slide img{ height: 240px; }
     }
-        
+
+
+
+    
 
     /* viewport masks the moving track */
     .events-viewport{
@@ -1168,6 +1166,7 @@
 
 <script>
 (function () {
+  // === EDIT YOUR EVENTS HERE ===
   const events = [
     { title:"MU Cotton Conference", date:"February 12, 2026", img:"images/News/CC20261.png", url:"https://moaes.missouri.edu/t-e-jake-fisher-delta-research-extension-and-education-center/" },
     { title:"Tree Crop Workshop", date:"March 10, 2026", img:"images/News/TCW20262.png", url:"https://centerforagroforestry.org/event/treecropworkshop/" },
@@ -1187,12 +1186,10 @@
   const metaTitle = document.getElementById("eventsMetaTitle");
   const metaLink  = document.getElementById("eventsMetaLink");
 
-  let index = 0;
+  let index = 0;            // index in real events array
   let timer = null;
   const intervalMs = 4500;
-  const transitionMs = 700;
 
-  // --- helpers ---
   function mod(n, m){ return ((n % m) + m) % m; }
 
   function makeSlide(ev){
@@ -1201,7 +1198,6 @@
     a.href = ev.url;
     a.target = "_blank";
     a.rel = "noopener";
-
     a.innerHTML = `
       <img src="${ev.img}" alt="${ev.title} — ${ev.date}">
       <div class="event-overlay">
@@ -1210,28 +1206,6 @@
       </div>
     `;
     return a;
-  }
-
-  // Build: clones on both ends for seamless loop
-  // [cloneLast, ...events, cloneFirst]
-  function build(){
-    track.innerHTML = "";
-
-    const cloneLast  = makeSlide(events[events.length - 1]);
-    const cloneFirst = makeSlide(events[0]);
-
-    track.appendChild(cloneLast);
-    events.forEach(ev => track.appendChild(makeSlide(ev)));
-    track.appendChild(cloneFirst);
-
-    renderDots();
-    // Start positioned on the "real" first slide (index 0 -> track item 1)
-    requestAnimationFrame(() => {
-      track.style.transition = "none";
-      moveTo(index, false);
-      setCenterClass();
-      requestAnimationFrame(() => track.style.transition = `transform ${transitionMs}ms cubic-bezier(.22,.8,.22,1)`);
-    });
   }
 
   function renderDots(){
@@ -1247,21 +1221,43 @@
     });
   }
 
-  // Compute slide width including gap
-  function slideMetrics(){
-    const first = track.querySelector(".event-slide");
-    if (!first) return { w: 0 };
-    const styles = getComputedStyle(track);
-    const gap = parseFloat(styles.gap || "0");
-    return { w: first.getBoundingClientRect().width + gap };
+  // Build infinite loop: [cloneLast, ...events, cloneFirst]
+  function build(){
+    track.innerHTML = "";
+    track.appendChild(makeSlide(events[events.length - 1])); // clone last
+    events.forEach(ev => track.appendChild(makeSlide(ev)));
+    track.appendChild(makeSlide(events[0])); // clone first
+
+    renderDots();
+
+    // jump to first real slide (offset +1 because of clone at start)
+    requestAnimationFrame(() => {
+      track.style.transition = "none";
+      setTranslate(index);
+      requestAnimationFrame(() => track.style.transition = "transform 900ms cubic-bezier(.22,.8,.22,1)");
+      setCenterClass();
+      setMeta();
+    });
   }
 
-  function moveTo(i, animate = true){
-    const { w } = slideMetrics();
-    // track index offset by +1 due to leading clone
-    const x = -w * (i + 1);
-    if (!animate) track.style.transition = "none";
+  function slideStep(){
+    const first = track.querySelector(".event-slide");
+    if (!first) return 0;
+    const gap = parseFloat(getComputedStyle(track).gap || "0");
+    return first.getBoundingClientRect().width + gap;
+  }
+
+  function setTranslate(i){
+    const step = slideStep();
+    // i is real index; track position uses i+1 due to leading clone
+    const x = -step * (i + 1);
     track.style.transform = `translateX(${x}px)`;
+  }
+
+  function setCenterClass(){
+    track.querySelectorAll(".event-slide").forEach(s => s.classList.remove("is-center"));
+    const center = track.querySelectorAll(".event-slide")[index + 1];
+    if (center) center.classList.add("is-center");
   }
 
   function setMeta(){
@@ -1274,49 +1270,39 @@
     );
   }
 
-  function setCenterClass(){
-    // Remove all center classes
-    track.querySelectorAll(".event-slide").forEach(s => s.classList.remove("is-center"));
-    // Center element is the real slide at (index + 1) because of cloneLast
-    const centerEl = track.querySelectorAll(".event-slide")[index + 1];
-    if (centerEl) centerEl.classList.add("is-center");
-  }
-
   function goTo(i){
     index = mod(i, events.length);
-    moveTo(index, true);
+    setTranslate(index);
     setCenterClass();
     setMeta();
   }
 
   function next(){
     index += 1;
-    moveTo(index, true);
-    // temporarily set center on the moving-to item (might be clone)
-    setCenterClass();
+    setTranslate(index);
   }
 
   function prev(){
     index -= 1;
-    moveTo(index, true);
-    setCenterClass();
+    setTranslate(index);
   }
 
-  // After each transition, if we're on a clone, jump (no animation) to the real one
+  // Seamless loop correction after transition ends
   track.addEventListener("transitionend", () => {
     const n = events.length;
 
     if (index >= n) {
       index = 0;
       track.style.transition = "none";
-      moveTo(index, false);
-      requestAnimationFrame(() => track.style.transition = `transform ${transitionMs}ms cubic-bezier(.22,.8,.22,1)`);
+      setTranslate(index);
+      requestAnimationFrame(() => track.style.transition = "transform 900ms cubic-bezier(.22,.8,.22,1)");
     }
+
     if (index < 0) {
       index = n - 1;
       track.style.transition = "none";
-      moveTo(index, false);
-      requestAnimationFrame(() => track.style.transition = `transform ${transitionMs}ms cubic-bezier(.22,.8,.22,1)`);
+      setTranslate(index);
+      requestAnimationFrame(() => track.style.transition = "transform 900ms cubic-bezier(.22,.8,.22,1)");
     }
 
     setCenterClass();
@@ -1343,12 +1329,15 @@
   root.addEventListener("focusin", stop);
   root.addEventListener("focusout", start);
 
-  // Keep correct alignment on resize
-  window.addEventListener("resize", () => moveTo(index, false));
+  // Keep alignment on resize
+  window.addEventListener("resize", () => {
+    track.style.transition = "none";
+    setTranslate(index);
+    requestAnimationFrame(() => track.style.transition = "transform 900ms cubic-bezier(.22,.8,.22,1)");
+  });
 
   // Init
   build();
-  setMeta();
   start();
 })();
 </script>
