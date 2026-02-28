@@ -615,7 +615,7 @@
     }
 
 
-    /* ================= UPCOMING EVENTS (smooth 3-up carousel) ================= */
+    /* ================= UPCOMING EVENTS (3-up carousel) ================= */
     .events-hero{
       max-width: 960px;
       margin: 28px auto 28px;
@@ -647,24 +647,16 @@
       padding: 18px 18px 44px;
     }
     
-    /* viewport masks the sliding track */
-    .events-viewport{
-      overflow: hidden;
-      width: 100%;
-    }
-    
-    /* horizontal track that moves smoothly */
+    /* Track holds 3 visible "cards" */
     .events-track{
-      display: flex;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 1.35fr 1fr;
       gap: 14px;
-      will-change: transform;
-      transition: transform 900ms cubic-bezier(.22,.8,.22,1);
+      align-items: center;
     }
     
-    /* each slide card */
+    /* A slide is a link wrapping the image */
     .event-slide{
-      flex: 0 0 32%;
       display:block;
       position: relative;
       border-radius: 14px;
@@ -673,9 +665,6 @@
       background: rgba(0,0,0,0.25);
       cursor: pointer;
       transform: translateZ(0);
-      opacity: .45;
-      transform: scale(.92);
-      transition: transform 450ms ease, opacity 450ms ease, box-shadow 450ms ease;
     }
     
     /* Image */
@@ -687,13 +676,13 @@
       filter: saturate(1.05);
     }
     
-    /* Overlay on image */
+    /* Overlay text ON image (optional but nice) */
     .event-slide .event-overlay{
       position:absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 10px;
+      padding: 10px 10px 10px;
       background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.0));
       z-index: 2;
     }
@@ -713,13 +702,22 @@
       line-height: 1.2;
     }
     
-    /* Center highlight */
+    /* Side slides smaller + transparent */
+    .event-slide.is-side{
+      opacity: 0.45;
+      transform: scale(0.92);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    
+    /* Center slide larger */
     .event-slide.is-center{
       opacity: 1;
       transform: scale(1.02);
       box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease;
     }
     
+    /* Hover affordance (only for center on desktop) */
     @media (hover:hover){
       .event-slide.is-center:hover{
         transform: scale(1.04);
@@ -778,7 +776,7 @@
       width: 18px;
     }
     
-    /* Meta below */
+    /* Meta below carousel (explicit date + name + link) */
     .events-meta{
       margin-top: 12px;
       text-align:center;
@@ -816,74 +814,20 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.35);
     }
     
-    /* Mobile: one slide */
+    /* Mobile: show 1 big slide */
     @media (max-width: 768px){
-      .event-slide{ flex-basis: 100%; }
-      .event-slide img{ height: 240px; }
+      .events-track{
+        grid-template-columns: 1fr;
+      }
+      .event-slide img{
+        height: 240px;
+      }
+      .event-slide.is-side{
+        display:none;
+      }
     }
-
-
-
-    
-
-    /* viewport masks the moving track */
-    .events-viewport{
-      overflow: hidden;
-      width: 100%;
-    }
-    
-    /* track becomes a horizontal strip that slides smoothly */
-    .events-track{
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      will-change: transform;
-      transition: transform 700ms cubic-bezier(.22,.8,.22,1);
-    }
-    
-    /* each slide is a fixed-width "card" */
-    .event-slide{
-      flex: 0 0 32%;
-      display:block;
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.25);
-      transform: translateZ(0);
-    }
-    
-    /* center size illusion via scaling */
-    .event-slide{
-      opacity: .45;
-      transform: scale(.92);
-      transition: transform 450ms ease, opacity 450ms ease;
-    }
-    
-    .event-slide.is-center{
-      opacity: 1;
-      transform: scale(1.02);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-    }
-    
-    /* image */
-    .event-slide img{
-      display:block;
-      width: 100%;
-      height: 210px;
-      object-fit: cover;
-    }
-    
-    /* Mobile: single slide full width */
-    @media (max-width: 768px){
-      .event-slide{ flex-basis: 100%; }
-    }
-
-
-
-
-
-    
+        
+  
     </style>
   </head>
   
@@ -927,24 +871,24 @@
 <!-- ================= UPCOMING EVENTS ================= -->
 <section class="events-hero" aria-label="Upcoming events">
   <div class="events-head">
-    <h1>Upcoming Events</h1>
+    <h2>Upcoming Events</h2>
     <p>Where you can find us next</p>
   </div>
 
   <div class="events-carousel" id="eventsCarousel">
-  <button class="events-arrow prev" type="button" aria-label="Previous event">
-    <i class="fa-solid fa-chevron-left"></i>
-  </button>
-  
-  <div class="events-viewport">
-    <div class="events-track" aria-live="polite"></div>
-  </div>
-  
-  <button class="events-arrow next" type="button" aria-label="Next event">
-    <i class="fa-solid fa-chevron-right"></i>
-  </button>
-  
-  <div class="events-dots" role="tablist" aria-label="Choose event"></div>
+    <button class="events-arrow prev" type="button" aria-label="Previous event">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <div class="events-track" aria-live="polite">
+      <!-- Slides will be rendered by JS -->
+    </div>
+
+    <button class="events-arrow next" type="button" aria-label="Next event">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <div class="events-dots" role="tablist" aria-label="Choose event">
       <!-- dots injected by JS -->
     </div>
   </div>
@@ -1168,10 +1112,30 @@
 (function () {
   // === EDIT YOUR EVENTS HERE ===
   const events = [
-    { title:"MU Cotton Conference", date:"February 12, 2026", img:"images/News/CC20261.png", url:"https://moaes.missouri.edu/t-e-jake-fisher-delta-research-extension-and-education-center/" },
-    { title:"Tree Crop Workshop", date:"March 10, 2026", img:"images/News/TCW20262.png", url:"https://centerforagroforestry.org/event/treecropworkshop/" },
-    { title:"Crop Management Conference", date:"April 5, 2026", img:"images/News/CMC20252.png", url:"https://www.farmprogress.com/technology/agriculture-technology-tools-to-try-on-the-farm-in-2026" },
-    { title:"FDREEC Field Day", date:"May 20, 2026", img:"images/News/FDREEC1.jpeg", url:"https://moaes.missouri.edu/t-e-jake-fisher-delta-research-extension-and-education-center/" }
+    {
+      title: "MU Cotton Conference",
+      date: "February 12, 2026",
+      img: "images/News/CC20261.png",
+      url: "https://moaes.missouri.edu/t-e-jake-fisher-delta-research-extension-and-education-center/"
+    },
+    {
+      title: "Tree Crop Workshop",
+      date: "March 10, 2026",
+      img: "images/News/TCW20262.png",
+      url: "https://centerforagroforestry.org/event/treecropworkshop/"
+    },
+    {
+      title: "Crop Management Conference",
+      date: "April 5, 2026",
+      img: "images/News/CMC20252.png",
+      url: "https://www.farmprogress.com/technology/agriculture-technology-tools-to-try-on-the-farm-in-2026"
+    },
+    {
+      title: "FDREEC Field Day",
+      date: "May 20, 2026",
+      img: "images/News/FDREEC1.jpeg",
+      url: "https://moaes.missouri.edu/t-e-jake-fisher-delta-research-extension-and-education-center/"
+    }
   ];
 
   const root = document.getElementById("eventsCarousel");
@@ -1179,34 +1143,19 @@
 
   const track = root.querySelector(".events-track");
   const dotsWrap = root.querySelector(".events-dots");
+
+  const metaDate = document.getElementById("eventsMetaDate");
+  const metaTitle = document.getElementById("eventsMetaTitle");
+  const metaLink = document.getElementById("eventsMetaLink");
+
   const prevBtn = root.querySelector(".events-arrow.prev");
   const nextBtn = root.querySelector(".events-arrow.next");
 
-  const metaDate  = document.getElementById("eventsMetaDate");
-  const metaTitle = document.getElementById("eventsMetaTitle");
-  const metaLink  = document.getElementById("eventsMetaLink");
-
-  let index = 0;            // index in real events array
+  let index = 0;
   let timer = null;
   const intervalMs = 4500;
 
   function mod(n, m){ return ((n % m) + m) % m; }
-
-  function makeSlide(ev){
-    const a = document.createElement("a");
-    a.className = "event-slide";
-    a.href = ev.url;
-    a.target = "_blank";
-    a.rel = "noopener";
-    a.innerHTML = `
-      <img src="${ev.img}" alt="${ev.title} — ${ev.date}">
-      <div class="event-overlay">
-        <div class="date">${ev.date}</div>
-        <div class="title">${ev.title}</div>
-      </div>
-    `;
-    return a;
-  }
 
   function renderDots(){
     dotsWrap.innerHTML = "";
@@ -1216,128 +1165,92 @@
       b.type = "button";
       b.role = "tab";
       b.setAttribute("aria-label", `Go to event ${i+1}`);
+      b.setAttribute("aria-selected", i === index ? "true" : "false");
       b.addEventListener("click", () => { goTo(i); restart(); });
       dotsWrap.appendChild(b);
     });
   }
 
-  // Build infinite loop: [cloneLast, ...events, cloneFirst]
-  function build(){
+  function slideEl(ev, cls){
+    const a = document.createElement("a");
+    a.className = `event-slide ${cls}`;
+    a.href = ev.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+
+    const img = document.createElement("img");
+    img.src = ev.img;
+    img.alt = `${ev.title} — ${ev.date}`;
+
+    const overlay = document.createElement("div");
+    overlay.className = "event-overlay";
+    overlay.innerHTML = `<div class="date">${ev.date}</div><div class="title">${ev.title}</div>`;
+
+    a.appendChild(img);
+    a.appendChild(overlay);
+    return a;
+  }
+
+  function render(){
+    // 3 visible: left, center, right
+    const leftI  = mod(index - 1, events.length);
+    const rightI = mod(index + 1, events.length);
+
     track.innerHTML = "";
-    track.appendChild(makeSlide(events[events.length - 1])); // clone last
-    events.forEach(ev => track.appendChild(makeSlide(ev)));
-    track.appendChild(makeSlide(events[0])); // clone first
+    track.appendChild(slideEl(events[leftI], "is-side"));
+    track.appendChild(slideEl(events[index], "is-center"));
+    track.appendChild(slideEl(events[rightI], "is-side"));
 
-    renderDots();
-
-    // jump to first real slide (offset +1 because of clone at start)
-    requestAnimationFrame(() => {
-      track.style.transition = "none";
-      setTranslate(index);
-      requestAnimationFrame(() => track.style.transition = "transform 900ms cubic-bezier(.22,.8,.22,1)");
-      setCenterClass();
-      setMeta();
-    });
-  }
-
-  function slideStep(){
-    const first = track.querySelector(".event-slide");
-    if (!first) return 0;
-    const gap = parseFloat(getComputedStyle(track).gap || "0");
-    return first.getBoundingClientRect().width + gap;
-  }
-
-  function setTranslate(i){
-    const step = slideStep();
-    // i is real index; track position uses i+1 due to leading clone
-    const x = -step * (i + 1);
-    track.style.transform = `translateX(${x}px)`;
-  }
-
-  function setCenterClass(){
-    track.querySelectorAll(".event-slide").forEach(s => s.classList.remove("is-center"));
-    const center = track.querySelectorAll(".event-slide")[index + 1];
-    if (center) center.classList.add("is-center");
-  }
-
-  function setMeta(){
+    // meta text (explicit)
     metaDate.textContent = events[index].date;
     metaTitle.textContent = events[index].title;
     metaLink.href = events[index].url;
 
-    [...dotsWrap.children].forEach((d, i) =>
-      d.setAttribute("aria-selected", i === index ? "true" : "false")
-    );
+    // dots selected state
+    [...dotsWrap.children].forEach((d, i) => d.setAttribute("aria-selected", i === index ? "true" : "false"));
   }
 
   function goTo(i){
     index = mod(i, events.length);
-    setTranslate(index);
-    setCenterClass();
-    setMeta();
+    render();
   }
 
-  function next(){
-    index += 1;
-    setTranslate(index);
-  }
-
-  function prev(){
-    index -= 1;
-    setTranslate(index);
-  }
-
-  // Seamless loop correction after transition ends
-  track.addEventListener("transitionend", () => {
-    const n = events.length;
-
-    if (index >= n) {
-      index = 0;
-      track.style.transition = "none";
-      setTranslate(index);
-      requestAnimationFrame(() => track.style.transition = "transform 900ms cubic-bezier(.22,.8,.22,1)");
-    }
-
-    if (index < 0) {
-      index = n - 1;
-      track.style.transition = "none";
-      setTranslate(index);
-      requestAnimationFrame(() => track.style.transition = "transform 900ms cubic-bezier(.22,.8,.22,1)");
-    }
-
-    setCenterClass();
-    setMeta();
-  });
+  function next(){ goTo(index + 1); }
+  function prev(){ goTo(index - 1); }
 
   function start(){
     stop();
-    timer = setInterval(() => { next(); }, intervalMs);
+    timer = setInterval(next, intervalMs);
   }
+
   function stop(){
     if (timer) clearInterval(timer);
     timer = null;
   }
-  function restart(){ start(); }
 
-  // Controls
+  function restart(){
+    start();
+  }
+
+  // Buttons
   nextBtn.addEventListener("click", () => { next(); restart(); });
   prevBtn.addEventListener("click", () => { prev(); restart(); });
 
-  // Pause on hover/focus
+  // Pause on hover / focus (nice UX)
   root.addEventListener("mouseenter", stop);
   root.addEventListener("mouseleave", start);
   root.addEventListener("focusin", stop);
   root.addEventListener("focusout", start);
 
-  // Keep alignment on resize
-  window.addEventListener("resize", () => {
-    track.style.transition = "none";
-    setTranslate(index);
-    requestAnimationFrame(() => track.style.transition = "transform 900ms cubic-bezier(.22,.8,.22,1)");
+  // Keyboard arrows
+  root.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { next(); restart(); }
+    if (e.key === "ArrowLeft")  { prev(); restart(); }
   });
 
   // Init
-  build();
+  renderDots();
+  render();
   start();
 })();
 </script>
