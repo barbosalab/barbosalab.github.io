@@ -433,7 +433,20 @@
         border-color: #FDB719;
       }
 
-
+      .member-header {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .member.reverse .member-header {
+        flex-direction: column-reverse;
+        text-align: right;
+      }
+      
+      /* Keep bio readable */
+      .member.reverse .member-text p {
+        text-align: right;
+      }
 
 
 
@@ -519,9 +532,11 @@
           <a href="https://www.linkedin.com/in/maria-villamil-mahecha-800802184/" target="_blank">LinkedIn</a>
         </div>
       </div>
-      <div class="member-text reverse">
-        <h3>Maria Villamil, MS</h3>
-        <span class="role">Research Specialist I</span>
+      <div class="member-text">
+        <div class="member-header">
+          <h3>Maria Villamil, MS</h3>
+          <span class="role">Research Specialist I</span>
+      </div>
         <p>
           Data-driven scientist with over 4 years of experience in precision agriculture, remote sensing, and geospatial analytics, specializing in transforming complex datasets into actionable insights for industry and research. Proven track record in developing and applying machine and deep learning, AI, geostatistical, and remote sensing methodologies to optimize crop performance, yield estimation, and decision-making in commercial farming systems. Instrumental in bridging academic research with real-world applications, contributing to scalable, data-driven solutions that enhance operational efficiency, sustainability, and technology adoption across the agricultural and natural resources sectors.
         </p>
