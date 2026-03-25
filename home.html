@@ -382,8 +382,24 @@
         font-size: 0.9em;
       }
     }
-
-    /* === Background Video === */
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+    }
+    
+    body {
+      background: transparent;
+      color: #ffffff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      padding-top: 64px;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Fullscreen video */
     #bg-video {
       position: fixed;
       top: 0;
@@ -391,16 +407,30 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -2;
+      z-index: 0;
     }
     
-    /* Dark overlay for readability */
+    /* Dark overlay above video */
     body::after {
       content: "";
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45); /* adjust darkness */
-      z-index: -1;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    /* Keep page content above overlay */
+    #header,
+    main,
+    footer {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Nav already high, but keep it safely above everything */
+    .topnav {
+      z-index: 10003;
     }
 
 
