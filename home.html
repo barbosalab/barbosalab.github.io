@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +33,26 @@
       overflow-x: hidden;
     }
     
-
+    /* Gradient layer */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    
+      background: linear-gradient(
+        135deg,
+        #0a161a 0%,   /* deep blue */
+        #0a1a17 20%,  /* teal */
+        #1a150a 35%,  /* brown */
+        #1a150a 55%,  /* brown */
+        #0e0a1a 70%,  /* warm amber */
+        #0a161a 100%  /* back to blue */
+      );
+    
+      background-size: 400% 400%;
+      animation: gradientShiftFast 15s ease-in-out infinite;
+    }
     
     /* Faster, smooth transition */
     @keyframes gradientShiftFast {
@@ -54,10 +74,6 @@
       overflow-x: hidden;
     }
 
-    <video autoplay muted loop playsinline id="bg-video">
-      <source src="images/Main/homevideo.mp4" type="video/mp4">
-    </video>
-    
     /* ================= NAV ================= */
     .topnav {
       position: fixed;
@@ -305,8 +321,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
-      z-index: 1;
     }
 
     /* Big logo */
@@ -382,63 +396,9 @@
         font-size: 0.9em;
       }
     }
-    
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100%;
-    }
-    
-    body {
-      background: transparent;
-      color: #ffffff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      padding-top: 64px;
-      overflow-x: hidden;
-      position: relative;
-    }
-    
-    /* Fullscreen video */
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    
-    /* Dark overlay above video */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.35);
-      z-index: 1;
-      pointer-events: none;
-    }
-    
-    /* Keep page content above overlay */
-    #header,
-    main,
-    footer {
-      position: relative;
-      z-index: 2;
-    }
-    
-    /* Nav already high, but keep it safely above everything */
-    .topnav {
-      z-index: 10003;
-    }
 
 
 
-
-
-
-    
   </style>
 </head>
 
