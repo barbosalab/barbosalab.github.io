@@ -26,42 +26,42 @@
 
 
   <style>
-        /* === Global animated gradient background === */
+
+
+    
     body {
-      background: #0b1e22; /* fallback */
-      position: relative;
+      margin: 0;
+      background: #0f0f0f;
+      color: #ffffff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      padding-top: 64px;
       overflow-x: hidden;
+      position: relative;
     }
     
-    /* Gradient layer */
-    body::before {
-      content: "";
+    /* Fullscreen background video */
+    .video-bg {
       position: fixed;
       inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+    }
+    
+    /* Optional dark overlay so text stays readable */
+    .video-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
       z-index: -1;
-    
-      background: linear-gradient(
-        135deg,
-        #0a161a 0%,   /* deep blue */
-        #0a1a17 20%,  /* teal */
-        #1a150a 35%,  /* brown */
-        #1a150a 55%,  /* brown */
-        #0e0a1a 70%,  /* warm amber */
-        #0a161a 100%  /* back to blue */
-      );
-    
-      background-size: 400% 400%;
-      animation: gradientShiftFast 15s ease-in-out infinite;
-    }
-    
-    /* Faster, smooth transition */
-    @keyframes gradientShiftFast {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      pointer-events: none;
     }
 
 
+
+    
     
     * { box-sizing: border-box; }
 
@@ -73,7 +73,7 @@
       padding-top: 64px; /* space for fixed nav */
       overflow-x: hidden;
     }
-
+  
     /* ================= NAV ================= */
     .topnav {
       position: fixed;
@@ -397,6 +397,33 @@
       }
     }
 
+    body {
+      margin: 0;
+      background: #0f0f0f;
+      color: #ffffff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      padding-top: 64px;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    .video-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+    }
+    
+    .video-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: -1;
+      pointer-events: none;
+    }
 
 
   </style>
@@ -404,6 +431,13 @@
 
 <body>
 
+
+<video class="video-bg" autoplay muted loop playsinline>
+  <source src="images/Main/homevideo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<div class="video-overlay"></div>
+  
 <!-- NAV -->
 <nav class="topnav">
   <div class="nav-inner">
