@@ -487,29 +487,26 @@
     /* ================= ONGOING PROJECTS ================= */
     
     .ongoing-projects {
-      margin: 80px auto 0;
+      margin-top: 40px;
     }
     
-    .ongoing-projects h2 {
-      border-left: 4px solid #FDB719;
-      padding-left: 12px;
-      font-size: 1.8rem;
-      margin-bottom: 30px;
+    .ongoing-projects header {
+      margin: 0 auto 24px;
     }
     
     .ongoing-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 80px;
+      column-gap: 30px;
+      row-gap: 24px;
     }
     
-    /* Tablet */
     @media (max-width: 900px) {
       .ongoing-grid {
         grid-template-columns: 1fr;
       }
     }
-    
+        
     .project-card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.12);
@@ -673,14 +670,15 @@
   
 
   <!-- HEADER -->
-<header>
-  <h2>Ongoing Projects</h2>
-</header>
-  
-  <section class="project-section ongoing-projects">  
-     
+<section class="project-section ongoing-projects">
+  <header>
+    <h2>Ongoing Projects</h2>
+  </header>
+
+  <div class="ongoing-grid">
+
     <!-- Project 1 -->
-      <div class="project-card">
+    <div class="project-card">
         <div class="project-card-content">
           <h3>
             Integrating Multi-Sensor Systems and AI for Monitoring Peanut Variety Performance
