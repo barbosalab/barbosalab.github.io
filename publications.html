@@ -965,14 +965,23 @@
 
   if (!canvas || !publications.length) return;
 
-  const colors = [
-    '#FDB719', // strong gold
-    '#FDC84A',
-    '#FDD97A',
-    '#FEE7A8',
-    '#FEF2C8',
-    '#9E9E9E'  // Others = gray
+  const areaOrder = [
+    'precision agriculture',
+    'remote sensing',
+    'artificial intelligence',
+    'robotics',
+    'dds',
+    'others'
   ];
+
+  const areaLabels = {
+    'precision agriculture': 'Precision Agriculture',
+    'remote sensing': 'Remote Sensing',
+    'artificial intelligence': 'Artificial Intelligence',
+    'robotics': 'Robotics',
+    'dds': 'Decision Support Systems',
+    'others': 'Others'
+  };
 
   const counts = {
     'precision agriculture': 0,
