@@ -395,6 +395,55 @@
       display: none;
     }
 
+
+    .pub-chart-section {
+      margin: 10px auto 50px;
+      padding: 28px 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      text-align: center;
+    }
+    
+    .pub-chart-section h2 {
+      margin: 0 0 8px;
+      font-size: 1.5rem;
+    }
+    
+    .chart-subtitle {
+      margin: 0 0 22px;
+      color: #cfcfcf;
+      font-size: 0.95rem;
+    }
+    
+    .pub-chart-wrap {
+      max-width: 520px;
+      margin: 0 auto 20px;
+    }
+    
+    .chart-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px 16px;
+      margin-top: 18px;
+      text-align: left;
+    }
+    
+    .chart-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #e8e8e8;
+      font-size: 0.95rem;
+    }
+    
+    .chart-legend-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex: 0 0 14px;
+    }
+
   </style>
 
 
@@ -457,6 +506,18 @@
 
   <section id="peer-publications" class="pub-group hidden">
 
+  <section class="pub-chart-section">
+    <h2>Publications by Subject Area</h2>
+    <p class="chart-subtitle">Distribution based on tagged publication areas</p>
+  
+    <div class="pub-chart-wrap">
+      <canvas id="areaPieChart"></canvas>
+    </div>
+  
+    <div id="areaChartLegend" class="chart-legend"></div>
+  </section>    
+
+    
   <!-- BACK BUTTON -->
   <button class="back-btn">
     <i class="fa-solid fa-arrow-left"></i> Back to Publications
@@ -896,5 +957,116 @@
 })();
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  const publications = document.querySelectorAll('#peer-publications .pub[data-area]');
+  const canvas = document.getElementById('areaPieChart');
+  const legend = document.getElementById('areaChartLegend');
+
+  if (!canvas || !publications.length) return;
+
+  const areaOrder = [
+    'precision agriculture',
+    'remote sensing',
+    'artificial intelligence',
+    'robotics',
+    'dds',
+    'others'
+  ];
+
+  const areaLabels = {
+    'precision agriculture': 'Precision Agriculture',
+    'remote sensing': 'Remote Sensing',
+    'artificial intelligence': 'Artificial Intelligence',
+    'robotics': 'Robotics',
+    'dds': 'Decision Support Systems',
+    'others': 'Others'
+  };
+
+  const counts = {
+    'precision agriculture': 0,
+    'remote sensing': 0,
+    'artificial intelligence': 0,
+    'robotics': 0,
+    'dds': 0,
+    'others': 0
+  };
+
+  publications.forEach(pub => {
+    const rawAreas = (pub.dataset.area || '')
+      .split(',')
+      .map(a => a.trim().toLowerCase())
+      .filter(Boolean);
+
+    rawAreas.forEach(area => {
+      let normalized = area;
+
+      if (normalized === 'dss') normalized = 'dds';
+
+      if (counts.hasOwnProperty(normalized)) {
+        counts[normalized] += 1;
+      } else {
+        counts.others += 1;
+      }
+    });
+  });
+
+  const labels = areaOrder.map(key => areaLabels[key]);
+  const data = areaOrder.map(key => counts[key]);
+
+  const colors = [
+    '#FDB719',
+    '#4DB6FF',
+    '#8E7CFF',
+    '#3DDC97',
+    '#FF7A59',
+    '#9E9E9E'
+  ];
+
+  new Chart(canvas, {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: colors,
+        borderColor: 'rgba(15,15,15,0.95)',
+        borderWidth: 2,
+        hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const total = context.dataset.data.reduce((sum, value) => sum + value, 0);
+              const value = context.raw;
+              const pct = total ? ((value / total) * 100).toFixed(1) : 0;
+              return `${context.label}: ${value} (${pct}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  legend.innerHTML = areaOrder.map((key, index) => {
+    const total = counts[key];
+    return `
+      <div class="chart-legend-item">
+        <span class="chart-legend-color" style="background:${colors[index]}"></span>
+        <span>${areaLabels[key]}: ${total}</span>
+      </div>
+    `;
+  }).join('');
+})();
+</script>
+  
 </body>
 </html>
