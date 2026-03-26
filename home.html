@@ -318,13 +318,19 @@
 
 
 /* === Header layout, spacing, and font styling === */
-    #header {
-      text-align: center;
-      margin-top: 100px;
+      #header {
+      position: relative;
+      z-index: 1;
+    
+      height: calc(100vh - 64px); /* full screen minus navbar */
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      justify-content: center;   /* vertical center */
+      align-items: center;       /* horizontal center */
+    
+      text-align: center;
+      padding: 0 18px;
+      margin: 0;                 /* remove the push-down */
     }
 
     /* Big logo */
