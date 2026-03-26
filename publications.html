@@ -1000,14 +1000,10 @@
       .split(',')
       .map(a => a.trim().toLowerCase())
       .filter(Boolean);
-
+  
     rawAreas.forEach(area => {
-      let normalized = area;
-
-      if (normalized === 'dss') normalized = 'dss';
-
-      if (counts.hasOwnProperty(normalized)) {
-        counts[normalized] += 1;
+      if (counts.hasOwnProperty(area)) {
+        counts[area] += 1;
       } else {
         counts.others += 1;
       }
