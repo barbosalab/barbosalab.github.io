@@ -541,7 +541,7 @@
       <option value="remote sensing">Remote Sensing</option>
       <option value="artificial intelligence">Artificial Intelligence</option>
       <option value="robotics">Robotics</option>
-      <option value="dds">Decision Support Systems</option>
+      <option value="dss">Decision Support Systems</option>
       <option value="others">Others</option>
     </select>
   </div>
@@ -550,7 +550,7 @@
   <section class="year">
     <h2>2026</h2>
 
-    <div class="pub" data-year="2025" data-area="precision agriculture,remote sensing,artificial intelligence,dds">
+    <div class="pub" data-year="2025" data-area="precision agriculture,remote sensing,artificial intelligence,dss">
       <div class="pub-title">Close-range and remote sensing applications in tomato crops: a systematic review</div>
       <div class="pub-authors">Carreira, V. S.; Almeida, S. L. H.; Zude-Sasse, M.; Barbosa Júnior, M. R.; Tommaselli, A. M. G.; Silva, R. P.</div>
       <div class="pub-journal"><em>European Journal of Remote Sensing</em> — <a href="" target="_blank">In press</a></div>
@@ -558,7 +558,7 @@
     
     <h2>2025</h2>
 
-    <div class="pub" data-year="2025" data-area="precision agriculture,remote sensing,artificial intelligence,dds">
+    <div class="pub" data-year="2025" data-area="precision agriculture,remote sensing,artificial intelligence,dss">
       <div class="pub-title">Automated crop measurements with UAVs: Evaluation of an AI-driven platform for counting and biometric analysis</div>
       <div class="pub-authors">Martins, J. V. S.; Barbosa Júnior, M. R.; Sales, L. A.; Santos, R. G.; Ribeiro, W. S.; Oliveira, L. P.</div>
       <div class="pub-journal"><em>Agriculture</em> — <a href="https://doi.org/10.3390/agriculture15212213" target="_blank">DOI</a></div>
@@ -605,7 +605,7 @@
       <div class="pub-journal"><em>Plants</em> — <a href="https://doi.org/10.3390/plants13233372" target="_blank">DOI</a></div>
     </div>
 
-    <div class="pub" data-year="2024" data-area="precision agriculture,remote sensing,artificial intelligence,robotics,dds">
+    <div class="pub" data-year="2024" data-area="precision agriculture,remote sensing,artificial intelligence,robotics,dss">
       <div class="pub-title">Precision agriculture in the United States: A comprehensive meta-review inspiring further research, innovation, and adoption</div>
       <div class="pub-authors">Barbosa Júnior, M. R.; Moreira, B. R. A.; Carreira, V. S.; Brito Filho, A. L.; Trentin, C.; Souza, F. L. P.; Tedesco, D.; Setiyono, T.; Flores, J. P.; Ampatzidis, Y.; Silva, R. P.; Shiratsuchi, L. S.</div>
       <div class="pub-journal"><em>Computers and Electronics in Agriculture</em> — <a href="https://doi.org/10.1016/j.compag.2024.108993" target="_blank">DOI</a></div>
@@ -973,7 +973,7 @@
     'remote sensing',
     'artificial intelligence',
     'robotics',
-    'dds',
+    'dss',
     'others'
   ];
 
@@ -982,7 +982,7 @@
     'remote sensing': 'Remote Sensing',
     'artificial intelligence': 'Artificial Intelligence',
     'robotics': 'Robotics',
-    'dds': 'Decision Support Systems',
+    'dss': 'Decision Support Systems',
     'others': 'Others'
   };
 
@@ -991,7 +991,7 @@
     'remote sensing': 0,
     'artificial intelligence': 0,
     'robotics': 0,
-    'dds': 0,
+    'dss': 0,
     'others': 0
   };
 
@@ -1004,7 +1004,7 @@
     rawAreas.forEach(area => {
       let normalized = area;
 
-      if (normalized === 'dss') normalized = 'dds';
+      if (normalized === 'dss') normalized = 'dss';
 
       if (counts.hasOwnProperty(normalized)) {
         counts[normalized] += 1;
