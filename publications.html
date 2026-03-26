@@ -1024,7 +1024,7 @@
   ];
 
   new Chart(canvas, {
-    type: 'pie',
+    type: 'dounghnut',
     data: {
       labels: labels,
       datasets: [{
@@ -1036,6 +1036,7 @@
       }]
     },
     options: {
+      cutout: '60%',
       responsive: true,
       plugins: {
         legend: {
