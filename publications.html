@@ -423,10 +423,13 @@
     
     .chart-legend {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;   
+      gap: 12px 24px;
     
-      min-width: 220px;
+      max-width: 600px;
+      margin: 20px auto 0;
+      text-align: center;
     }
         
     .chart-legend-item {
@@ -435,6 +438,7 @@
       gap: 10px;
       color: #e8e8e8;
       font-size: 0.95rem;
+      justify-content: center;
     }
     
     .chart-legend-color {
