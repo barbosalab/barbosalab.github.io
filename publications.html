@@ -422,13 +422,13 @@
     }
     
     .chart-legend {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px 16px;
-      margin-top: 18px;
-      text-align: left;
-    }
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     
+      min-width: 220px;
+    }
+        
     .chart-legend-item {
       display: flex;
       align-items: center;
@@ -444,6 +444,18 @@
       flex: 0 0 14px;
     }
 
+
+    @media (max-width: 768px) {
+      .pub-chart-wrap {
+        flex-direction: column;
+        gap: 20px;
+      }
+    
+      .chart-legend {
+        align-items: center;
+      }
+    }
+    
   </style>
 
 
