@@ -1015,12 +1015,21 @@
   const data = areaOrder.map(key => counts[key]);
 
   const colors = [
-    '#FDB719',
-    '#4DB6FF',
-    '#8E7CFF',
-    '#3DDC97',
-    '#FF7A59',
-    '#9E9E9E'
+    '#FDB719', // strong gold
+    '#FDC84A',
+    '#FDD97A',
+    '#FEE7A8',
+    '#FEF2C8',
+    '#9E9E9E'  // Others = gray
+  ];
+
+  const areaOrder = [
+    'precision agriculture',
+    'remote sensing',
+    'artificial intelligence',
+    'robotics',
+    'dds',
+    'others'
   ];
 
   new Chart(canvas, {
