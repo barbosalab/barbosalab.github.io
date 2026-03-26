@@ -504,7 +504,7 @@
     </div>
   </section>
 
-  <section class="pub-chart-section">
+  <section id="main-pub-chart" class="pub-chart-section">
     <h2>Publications by Subject Area</h2>
     <p class="chart-subtitle">Distribution based on tagged publication areas</p>
   
@@ -927,15 +927,17 @@
 })();
 </script>
 
-  <script>
+<script>
 (function () {
   const chooser = document.getElementById('pub-chooser');
+  const chart = document.getElementById('main-pub-chart');
   const peer = document.getElementById('peer-publications');
   const extension = document.getElementById('extension-publications');
 
   document.querySelectorAll('.chooser-card').forEach(card => {
     card.addEventListener('click', () => {
       chooser.classList.add('hidden');
+      chart.classList.add('hidden');
 
       if (card.dataset.target === 'peer') {
         peer.classList.remove('hidden');
@@ -950,6 +952,7 @@
       peer.classList.add('hidden');
       extension.classList.add('hidden');
       chooser.classList.remove('hidden');
+      chart.classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
