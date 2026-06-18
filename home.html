@@ -343,28 +343,25 @@
     /* Big logo */
     #header img.header-logo {
       display: block;
-      width: 100;
+      width: clamp(180px, 35vw, 320px);
       height: auto;
     }
 
     @media (max-width: 991.98px) {
       #header img.header-logo {
-        width: 50;
-        height: auto;
+        max-width: 220px;
       }
     }
 
     @media (max-width: 768px) {
       #header img.header-logo {
-        width: 25;
-        height: auto;
+        max-width: 180px;
       }
     }
 
     @media (max-width: 480px) {
       #header img.header-logo {
-        width: 15;
-        height: auto;
+        max-width: 140px;
       }
     }
 
