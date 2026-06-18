@@ -341,10 +341,32 @@
     }
 
     /* Big logo */
-    #header img.header-logo {
+      #header img.header-logo {
       display: block;
-      width: clamp(100px, 28vw, 1000);
+      width: min(78vw, 760px);
       height: auto;
+      margin-bottom: 24px;
+    }
+    
+    /* Tablet */
+    @media (max-width: 991.98px) {
+      #header img.header-logo {
+        width: min(85vw, 620px);
+      }
+    }
+    
+    /* Phone */
+    @media (max-width: 768px) {
+      #header img.header-logo {
+        width: min(92vw, 520px);
+      }
+    }
+    
+    /* Small phone */
+    @media (max-width: 480px) {
+      #header img.header-logo {
+        width: 94vw;
+      }
     }
 
   
