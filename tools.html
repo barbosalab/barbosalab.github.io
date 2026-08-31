@@ -331,7 +331,14 @@
       gap: 24px;
       margin-top: 40px;
     }
-    
+
+    /* Center the last card when it is alone */
+    .tool-item:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      width: calc(50% - 12px);
+      justify-self: center;
+    }
+        
     .tool-item {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.12);
@@ -423,6 +430,12 @@
     @media (max-width: 700px) {
       .tools {
         grid-template-columns: 1fr;
+      }
+    
+      /* On mobile, every card uses the full width */
+      .tool-item:last-child:nth-child(odd) {
+        grid-column: auto;
+        width: 100%;
       }
     
       .tool-links {
